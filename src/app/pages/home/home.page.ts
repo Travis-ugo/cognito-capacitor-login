@@ -16,7 +16,7 @@ import {
   IonLabel,
   IonSpinner
 } from '@ionic/angular/standalone';
-import {RouterLink, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {FooterInterface} from '../../models/content/footer.interface';
 import {UserInterface} from '../../models/userData/user.interface';
 import {FooterComponent} from '../../components/shared/footer/footer.component';
@@ -40,7 +40,6 @@ import {CommonModule} from '@angular/common';
     IonItem,
     IonLabel,
     IonSpinner,
-    RouterLink,
     FooterComponent,
     CommonModule,
   ],

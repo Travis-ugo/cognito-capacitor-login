@@ -13,7 +13,7 @@ import {
     IonButton, IonCol,
     IonContent, IonGrid,
     IonImg,
-    IonProgressBar, IonRow,
+    IonRow,
 } from '@ionic/angular/standalone';
 import {IntroSlidesInterface} from '../../models/content/introSlides.interface';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -25,7 +25,6 @@ import {UtilityService} from '../../services/utility.service';
   standalone: true,
     imports: [
         NgIf,
-        IonProgressBar,
         IonContent,
         IonButton,
         NgForOf,
