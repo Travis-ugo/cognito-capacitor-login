@@ -1,0 +1,15 @@
+node_modules
+.angular
+.git
+ios
+android
+*.log
+*.cache
+.DS_Store
+.vscode
+*.md
+capacitor.config.json
+ionic.config.json
+tsconfig*.json
+tslint.json
+package-lock.json
