@@ -1,0 +1,25 @@
+
+input {
+    width: 21%;
+    margin: auto 2%;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+}
+#loginCode h1,
+#loginCode p {
+    color: #fff;
+}
+#loginCode ion-chip {
+  background: #d2d9fd;
+  --color: #4a9ed2;
+  color: #05293f;
+  border-radius: 4px;
+  border: #0d5f88 1px solid;
+  font-size: 16px;
+  width: 100%;
+  padding: 20px;
+}
+.sub-text {
+  font-size: 14px;
+}

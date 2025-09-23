@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">cognito</string>
+    <string name="title_activity_main">cognito</string>
+    <string name="package_name">im.pencil.cognito</string>
+    <string name="custom_url_scheme">im.pencil.cognito</string>
+</resources>

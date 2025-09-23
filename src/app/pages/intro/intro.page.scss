@@ -1,0 +1,48 @@
+app-intro {
+  --background: radial-gradient(circle, rgb(12, 80, 123) 0%, rgba(22,34,42,1) 100%);
+  .flex-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .swiper-wrapper {
+    flex: 1; /* This makes the swiper-wrapper expand to fill available space */
+    /* Optionally, if you need to prevent overflow */
+    overflow: hidden;
+  }
+  .intro-swiper {
+    overflow: hidden;
+    height: 100%;
+  }
+  swiper-slide {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 100%;
+  }
+  p, h2 {
+    color: #fff;
+  }
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  ion-segment-button {
+    --background: transparent;
+    --color: #fff;
+  }
+  .img-content ion-img {
+    width: 100%;
+    height: 100px;
+  }
+  ion-checkbox {
+    --background: transparent;
+    color: #fff;
+  }
+  ion-checkbox::part(helper-text) {
+    color: #fff;
+  }
+  ion-checkbox::part(error-text) {
+    color: var(--ion-color-danger);
+  }
+}

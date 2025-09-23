@@ -1,0 +1,195 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
+
+// global.scss
+
+/** TYPOGRAPHY */
+ion-title,
+.large-text,
+h1, h2, h3,
+.p-font,
+ion-card-title,
+ion-list-header {
+  font-family: 'Handlee', cursive;
+}
+ion-list-header {
+  font-weight: normal;
+}
+ion-list-header ion-label {
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+p,
+.content-p,
+ul,
+ol {
+  line-height: 1.4rem;
+}
+li {
+  margin-bottom: 1.2rem;
+}
+.center {
+  text-align: center;
+  margin: auto;
+}
+.right {
+  text-align: right;
+  float: right;
+}
+/** FORMS */
+
+/** LAYOUT */
+
+/** THEME */
+ion-content {
+  --background: radial-gradient(circle, rgb(12, 80, 123) 0%, rgba(22,34,42,1) 100%);
+}
+.dark-bg {
+  background: radial-gradient(circle, rgb(12, 80, 123) 0%, rgba(22,34,42,1) 100%);
+}
+app-modal-breathing {
+  background: radial-gradient(circle, rgb(12, 80, 123) 0%, rgba(22,34,42,1) 100%);
+}
+
+ion-card-header {
+}
+ion-card-subtitle {
+  color: #333;
+}
+ion-card-header+.card-content-md {
+  padding: 20px;
+  color: #000;
+}
+h1 {
+  font-size: 26px;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 18px;
+}
+p, li {
+  font-size: 16px;
+}
+ion-list {
+  border-radius: 10px;
+}
+ion-item {
+  background: #0c3c5b;
+}
+ion-list.list-md {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+ion-card {
+  margin-bottom: 10px;
+}
+
+ion-button ion-icon,
+ion-toggle {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+ion-button {
+  margin-left: 0!important;
+  margin-right: 0!important;
+}
+/*ion-segment {
+  --color: #fff;
+  --color-checked: #333;
+  --color-hover: #fff;
+  --color-focused: #fff;
+}
+ion-segment-button {
+  --color: #fff;
+  --color-checked: #fff;
+  color: #fff;
+}*/
+.stat-text {
+  color: #333;
+  font-size: 2rem;
+}
+.sub-text {
+  color: #fff;
+  font-size: 1rem;
+}
+.comp-bg {
+  background-color: #185584;
+  border-radius: 10px;
+  padding: 10px;
+}
+/* SLIDER.js */
+swiper-container {
+  --swiper-pagination-color: #28cea4!important;
+  --swiper-pagination-progressbar-bg-color: rgba(0, 0, 0, 0.10);
+  --swiper-pagination-progressbar-size: 10px;
+}
+
+
+.panel-bg-primary {
+  background: var(--ion-color-primary);
+  border-radius: 8px;
+  padding: 10px;
+  color: #0C3C5B!important;
+}
+.panel-bg-primary p {
+  color: #0C3C5B!important;
+}
+
+.panel-bg-secondary {
+  background: var(--ion-color-secondary);
+  border-radius: 8px;
+  padding: 10px;
+  color: #0C3C5B!important;
+}
+.panel-bg-secondary p,
+.panel-bg-secondary h2, {
+  color: #0C3C5B!important;
+}
+
+.panel-bg-tertiary {
+  background: var(--ion-color-tertiary);
+  border-radius: 8px;
+  padding: 10px;
+  color: #81EBC2!important;
+}
+.panel-bg-tertiary p {
+  color: #81EBC2!important;
+}
+.panel-bg-dark {
+  background: var(--ion-color-dark);
+  border-radius: 8px;
+  padding: 10px;
+  color: #81EBC2!important;
+}
+
+ion-progress-bar {
+  height: 10px;
+}

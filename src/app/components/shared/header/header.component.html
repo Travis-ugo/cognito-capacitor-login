@@ -1,0 +1,35 @@
+<ion-header *ngIf="headerData.type === 'root'">
+  <ion-toolbar [color]="headerData.color">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/settings" color="light">
+        <ion-icon slot="icon-only" name="ellipsis-horizontal-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{ headerData.title }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <img ngSrc="/assets/happyme-app-logo.svg" width="40" height="40" alt="">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header *ngIf="headerData.type === 'back'">
+  <ion-toolbar [color]="headerData.color">
+    <ion-buttons slot="start">
+      <ion-back-button
+              text=""
+              [icon]="backIcon"
+              defaultHref="home"
+              [routerLink]="headerData.urlPath"
+              color="light">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      {{ headerData.title }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <img ngSrc="/assets/happyme-app-logo.svg" width="40" height="40" alt="">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

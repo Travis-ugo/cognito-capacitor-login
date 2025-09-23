@@ -1,0 +1,45 @@
+<ion-content class="ion-padding" id="loginCode">
+  <ion-row>
+    <ion-col size-md="8" offset-md="2" size-lg="6" offset-lg="3">
+      <h1>Confirmation Code</h1>
+      <p>We've <strong>emailed</strong> you a secret code. Please enter it below.</p>
+
+      <div *ngIf="challengeResponse | async">
+        <ion-chip>
+          <div>{{ challengeResponse | async }}</div>
+        </ion-chip>
+      </div>
+
+      <form>
+        <label>
+          <input [formControl]="digit1" #digit1el type="tel" pattern="\d*" (keyup)="changeFocus($event, 1)">
+        </label>
+        <label>
+          <input [formControl]="digit2" #digit2el type="tel" pattern="\d" maxlength="1" (keyup)="changeFocus($event, 2)">
+        </label>
+        <label>
+          <input [formControl]="digit3" #digit3el type="tel" pattern="\d" maxlength="1" (keyup)="changeFocus($event, 3)">
+        </label>
+        <label>
+          <input [formControl]="digit4" #digit4el type="tel" pattern="\d" maxlength="1">
+        </label>
+      </form>
+
+      <p class="sub-text">If it doesn't arrive within a couple of minutes check your Junk Folder</p>
+
+      <ion-button
+        color="primary"
+        expand="block"
+        (click)="submit()"
+        [disabled]="(busy | async)">
+        <div *ngIf="!(busy | async)">CONTINUE</div>
+        <div *ngIf="busy | async">PLEASE WAIT</div>
+      </ion-button>
+
+      <ion-button  *ngIf="challengeResponse | async"  routerLink="/account/login" router-direction="back" expand="block" fill="outline">
+        Return to LOGIN
+      </ion-button>
+
+    </ion-col>
+  </ion-row>
+</ion-content>

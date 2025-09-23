@@ -1,0 +1,11 @@
+ion-tab-bar {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+ion-tab-button {
+  &.tab-selected {
+    color: var(--ion-color-primary);
+  }
+}

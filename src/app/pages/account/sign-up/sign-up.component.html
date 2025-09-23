@@ -1,0 +1,103 @@
+<ion-content class="ion-padding" id="signUp">
+
+  <ion-row>
+    <ion-col size-sm="4" offset-sm="4" id="logo">
+      <ion-img src="./assets/happyme-app-logo.svg" alt="HappyMe" class="center"></ion-img>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size-sm="4" offset-sm="4">
+      <h1>Welcome to HappyMe</h1>
+
+      <h2>Sign up for free, no obligation</h2>
+
+      <hr>
+
+      <ion-list>
+        <ion-item color="secondary">
+          <ion-icon name="checkbox-outline" color="dark"></ion-icon>
+          FREE access to all content for 7 Days
+        </ion-item>
+        <ion-item color="secondary">
+          <ion-icon name="checkbox-outline" color="dark"></ion-icon>
+          Personalised Daily Routine
+        </ion-item>
+        <ion-item color="secondary">
+          <ion-icon name="checkbox-outline" color="dark"></ion-icon>
+          Developed by Professional Therapists
+        </ion-item>
+      </ion-list>
+
+      <hr>
+
+      <ion-chip color="danger" *ngIf="errorMessage | async">{{ errorMessage | async }}</ion-chip>
+
+      <p>Enter your email to start</p>
+
+      <form (ngSubmit)="signIn()" [formGroup]="signInForm">
+        <ion-input
+          label="Enter your email address"
+          labelPlacement="floating"
+          type="email"
+          formControlName="email"
+          email
+          name="email">
+        </ion-input>
+        <ion-chip color="danger" *ngIf="signInForm.controls['email'].invalid && signInForm.controls['email']?.touched">
+          <ion-label>Please enter your email</ion-label>
+        </ion-chip>
+
+        <hr>
+
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" class="google" (click)="socialSignIn('Google')">
+              <ion-icon name="logo-google"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" class="facebook" (click)="socialSignIn('Facebook')">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" class="apple" (click)="socialSignIn('Apple')">
+              <ion-icon name="logo-apple"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <hr>
+        <ion-checkbox
+          justify="start"
+          labelPlacement="end"
+          formControlName="isAgreed">
+          I agree to the Terms and Conditions
+        </ion-checkbox>
+
+        <ion-chip color="danger" *ngIf="signInForm.controls['isAgreed']?.invalid && (signInForm.controls['isAgreed']?.touched || showError)">
+          You must agree to the terms to continue
+        </ion-chip>
+
+        <p class="terms-text">
+          By creating an account, you acknowledge that you have read and agree to the
+          <a href="https://www.myhappyme.co.uk/terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
+          and the
+          <a href="https://www.myhappyme.co.uk/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>.
+        </p>
+
+        <ion-button color="primary" type="submit" expand="block" [disabled]="(busy | async)">
+          <div *ngIf="!(busy | async) || !signInForm.valid">
+            Continue
+          </div>
+          <div *ngIf="busy | async">
+            Please wait
+          </div>
+        </ion-button>
+      </form>
+
+    </ion-col>
+  </ion-row>
+
+</ion-content>

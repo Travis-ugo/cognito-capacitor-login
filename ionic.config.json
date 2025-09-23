@@ -1,0 +1,7 @@
+{
+  "name": "cognito",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

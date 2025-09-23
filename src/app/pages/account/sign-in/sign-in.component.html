@@ -1,0 +1,61 @@
+<ion-content class="ion-padding" id="signIn">
+
+  <ion-row>
+    <ion-col size-sm="4" offset-sm="4" id="logo">
+      <ion-img src="./assets/happyme-app-logo.svg" alt="HappyMe" class="center"></ion-img>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size-sm="4" offset-sm="4">
+      <h1>Welcome Back</h1>
+
+      <p>Login to continue your happiness journey...</p>
+
+      <ion-chip color="danger" *ngIf="errorMessage | async">{{ errorMessage | async }}</ion-chip>
+
+      <form (ngSubmit)="signIn()" [formGroup]="signInForm">
+        <ion-input
+          label="Enter your Email"
+          labelPlacement="floating"
+          type="email"
+          formControlName="email"
+          email
+          name="email">
+        </ion-input>
+        <ion-chip color="danger" *ngIf="signInForm.controls['email'].invalid && signInForm.controls['email']?.touched">
+          <ion-label>Please enter your email</ion-label>
+        </ion-chip>
+
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" class="google" (click)="socialSignIn('Google')">
+              <ion-icon name="logo-google"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" class="facebook" (click)="socialSignIn('Facebook')">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" class="apple" (click)="socialSignIn('Apple')">
+              <ion-icon name="logo-apple"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-button color="primary" type="submit" expand="block" [disabled]="!signInForm.valid || (busy | async)">
+          <div *ngIf="!(busy | async) || !signInForm.valid">
+            Continue
+          </div>
+          <div *ngIf="busy | async">
+            Please wait
+          </div>
+        </ion-button>
+      </form>
+
+    </ion-col>
+  </ion-row>
+
+</ion-content>

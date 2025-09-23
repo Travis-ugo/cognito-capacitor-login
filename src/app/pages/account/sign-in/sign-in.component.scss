@@ -1,0 +1,72 @@
+#signIn {
+  --background: radial-gradient(circle, rgb(12, 80, 123) 0%, rgba(22,34,42,1) 100%);
+
+  h1, h2 {
+    text-align: center;
+  }
+
+  h1, h2, h3, p, ion-checkbox {
+    color: #fff;
+  }
+
+  #logo {
+    text-align: center;
+    margin: 15px auto;
+  }
+  #logo ion-img {
+    width: 150px;
+    height: 150px;
+  }
+  .spacer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  .wrap-text {
+    white-space: normal;
+  }
+
+  ion-toggle {
+    --track-background: #ddd;
+    --track-background-checked: var(--ion-color-primary);
+    --handle-background: #b0b0b0;
+    --handle-background-checked: #11a987;
+    overflow: visible;
+  }
+
+  ion-input {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    --padding-start: 10px;
+  }
+
+  ion-button {
+    margin-bottom: 20px;
+  }
+  ion-button.facebook {
+    --background: #325A9F;
+    --background-hover: #4877c9;
+    --background-activated: #325A9F;
+    --background-focused: #325A9F;
+    --color: #ffffff;
+  }
+  ion-button.apple {
+    --background: #FFFFFF;
+    --background-hover: #BBBBBB;
+    --background-activated: #FFFFFF;
+    --background-focused: #FFFFFF;
+    --color: #000000;
+  }
+  ion-button.google {
+    --background: #4285F6;
+    --background-hover: #6e9ef1;
+    --background-activated: #4285F6;
+    --background-focused: #4285F6;
+    --color: #ffffff;
+  }
+}
