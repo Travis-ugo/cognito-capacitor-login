@@ -39,8 +39,8 @@ Amplify.configure({
       loginWith: {
         oauth: {
           domain: environment.awsConfig.cognitoDomain,
-          redirectSignIn: isPlatform('capacitor') ? mobileRedirect : webRedirect,
-          redirectSignOut: isPlatform('capacitor') ? mobileSignOut : webSignOut,
+          redirectSignIn: [isPlatform('capacitor') ? mobileRedirect : webRedirect],
+          redirectSignOut: [isPlatform('capacitor') ? mobileSignOut : webSignOut],
           responseType: 'code',
           scopes: ['email', 'openid', 'profile'],
         },
