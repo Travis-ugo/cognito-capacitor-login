@@ -45,7 +45,6 @@
 		"aws-amplify": "^6.14.2",
 		"aws-sdk": "^2.1692.0",
 		"buffer": "^6.0.3",
-		"cap": "^0.2.1",
 		"capacitor-branch-deep-links": "^9.0.0",
 		"capacitor-plugin-app-tracking-transparency": "^2.0.5",
 		"core-js": "3.41.0",

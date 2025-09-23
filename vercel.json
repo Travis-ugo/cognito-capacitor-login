@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "cognito-capacitor-login",
   "builds": [
     {
       "src": "package.json",
