@@ -10,6 +10,5 @@ android
 *.md
 capacitor.config.json
 ionic.config.json
-tsconfig*.json
 tslint.json
 package-lock.json
