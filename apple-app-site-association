@@ -1,0 +1,26 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "YOUR_TEAM_ID.im.pencil.cognito"
+        ],
+        "components": [
+          {
+            "/": "/callback/*",
+            "comment": "OAuth callback handler"
+          },
+          {
+            "/": "/*",
+            "comment": "All paths"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "YOUR_TEAM_ID.im.pencil.cognito"
+    ]
+  }
+}

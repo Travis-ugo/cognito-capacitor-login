@@ -1,0 +1,11 @@
+# Enable GitHub Pages
+plugins:
+  - jekyll-relative-links
+
+# Include .well-known directory
+include: [".well-known"]
+
+# Exclude unnecessary files
+exclude:
+  - README.md
+  - .gitignore
