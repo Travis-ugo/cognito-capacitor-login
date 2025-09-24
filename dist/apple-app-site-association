@@ -20,7 +20,7 @@
   },
   "webcredentials": {
     "apps": [
-      "8D26Y9S2HV.im.pencil.cognito"
+      "YOUR_TEAM_ID.im.pencil.cognito"
     ]
   }
 }
