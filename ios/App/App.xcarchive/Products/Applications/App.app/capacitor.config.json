@@ -1,0 +1,43 @@
+{
+	"appId": "im.pencil.cognito",
+	"appName": "cognito",
+	"npmClient": "npm",
+	"webDir": "dist",
+	"windowsAndroidStudioPath": "",
+	"server": {
+		"androidScheme": "https",
+		"iosScheme": "capacitor"
+	},
+	"plugins": {
+		"PushNotifications": {
+			"presentationOptions": [
+				"badge",
+				"sound",
+				"alert"
+			]
+		},
+		"App": {
+			"launchUrl": "cognitoapp"
+		},
+		"EdgeToEdge": {
+			"backgroundColor": "#132530"
+		},
+		"Branch": {
+			"apikey": "YOUR_BRANCH_KEY_HERE",
+			"enableLogging": false
+		}
+	},
+	"backgroundColor": "#114160",
+	"showSpinner": true,
+	"packageClassList": [
+		"AppPlugin",
+		"CAPBrowserPlugin",
+		"DevicePlugin",
+		"HapticsPlugin",
+		"PushNotificationsPlugin",
+		"SharePlugin",
+		"StatusBarPlugin",
+		"BranchDeepLinks",
+		"AppTrackingTransparencyPlugin"
+	]
+}

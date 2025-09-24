@@ -1,5 +1,46 @@
-node_modules
-github-pages/
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+www/
+.angular/
+.next/
+.nuxt/
+.vuepress/dist
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Capacitor
+ios/App/App/public
+android/app/src/main/assets/public
+
+# Deployment
 .vercel
-.angular/
-.angular/
+github-pages/
+
+# Logs
+logs
+*.log
