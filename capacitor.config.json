@@ -24,7 +24,7 @@
     },
     "Branch": {
       "apikey": "YOUR_BRANCH_KEY_HERE",
-      "enableLogging": true
+      "enableLogging": false
     }
   },
   "backgroundColor": "#114160",

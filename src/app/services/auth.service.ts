@@ -34,64 +34,58 @@ export class AuthService {
     try {
       console.log('🔥 STARTING SOCIAL SIGN-IN');
       console.log('🔥 Provider:', identityProvider);
-      console.log('🔥 Environment config:', JSON.stringify(environment.awsConfig, null, 2));
       console.log('🔥 Platform info:', {
         isNative: Capacitor.isNativePlatform(),
         platform: Capacitor.getPlatform(),
-        userAgent: navigator.userAgent
+        hostname: this.window?.location?.hostname,
+        production: environment.production
       });
 
       // Get the current Amplify configuration to debug
       const { Amplify } = await import('aws-amplify');
       const currentConfig = Amplify.getConfig();
-      console.log('🔥 Current Amplify config:', JSON.stringify(currentConfig, null, 2));
+      console.log('🔥 Current Amplify config redirects:', {
+        signIn: currentConfig.Auth?.Cognito?.loginWith?.oauth?.redirectSignIn,
+        signOut: currentConfig.Auth?.Cognito?.loginWith?.oauth?.redirectSignOut
+      });
 
-      // Let's build the OAuth URL manually and show it to debug
-      const redirectUri = Capacitor.isNativePlatform() ? 'happymeapp://callback' : 'http://localhost:8100';
-      const testAuthUrl = `https://${environment.awsConfig.cognitoDomain}/oauth2/authorize?` +
-        `client_id=${environment.awsConfig.userPoolClientId}&` +
-        `response_type=code&` +
-        `scope=email+openid+profile&` +
-        `redirect_uri=${encodeURIComponent(redirectUri)}&` +
-        `identity_provider=${identityProvider}`;
-
-      console.log('🔥 Generated OAuth URL:', testAuthUrl);
-      console.log('🔥 Using redirect URI:', redirectUri);
-
-      // Show a more detailed alert for debugging
-      alert(`🔥 DEBUG INFO:\nProvider: ${identityProvider}\nRedirect: ${redirectUri}\nDomain: ${environment.awsConfig.cognitoDomain}\nClient ID: ${environment.awsConfig.userPoolClientId}\n\nOAuth URL: ${testAuthUrl}`);
-
-      // Let's try the standard Amplify method first with detailed error logging
-      console.log('🔥 Attempting standard Amplify signInWithRedirect...');
+      // Use Amplify's configured redirect URIs (which are set in main.ts based on environment)
+      console.log('🔥 Attempting Amplify signInWithRedirect...');
 
       // Log the exact parameters being passed to signInWithRedirect
       const signInParams = { provider: identityProvider };
       console.log('🔥 SignInWithRedirect parameters:', JSON.stringify(signInParams, null, 2));
 
       await signInWithRedirect(signInParams);
-      console.log('🔥 Amplify signInWithRedirect completed successfully');
+      console.log('🔥 Amplify signInWithRedirect initiated successfully');
 
     } catch (error: any) {
       console.error('🔥🔥🔥 ERROR during social sign-in:', error);
-      console.error('🔥🔥🔥 Error name:', error.name);
-      console.error('🔥🔥🔥 Error message:', error.message);
-      console.error('🔥🔥🔥 Error code:', error.code);
-      console.error('🔥🔥🔥 Error stack:', error.stack);
-      console.error('🔥🔥🔥 Full error object:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
+      console.error('🔥🔥🔥 Error details:', {
+        name: error.name,
+        message: error.message,
+        code: error.code
+      });
 
-      // Alert with detailed error info for immediate visibility
-      alert(`🔥🔥🔥 DETAILED ERROR:\n\nName: ${error.name}\nMessage: ${error.message}\nCode: ${error.code}\n\nFull error: ${JSON.stringify(error, Object.getOwnPropertyNames(error), 2)}`);
+      // Provide user-friendly error messages based on error type
+      let userMessage = 'Authentication failed. ';
 
-      // More specific error messages
-      if (error.message?.includes('redirect')) {
-        console.error('🔥🔥🔥 This appears to be a redirect URL configuration error');
+      if (error.message?.includes('InvalidOriginException') || error.message?.includes('redirect')) {
+        userMessage += 'Please ensure the redirect URLs are configured correctly in AWS Cognito.';
+        console.error('🔥🔥🔥 This appears to be a redirect URL configuration error in AWS Cognito');
       } else if (error.message?.includes('provider')) {
+        userMessage += 'The OAuth provider configuration is incorrect.';
         console.error('🔥🔥🔥 This appears to be a provider configuration error');
-      } else if (error.message?.includes('format')) {
-        console.error('🔥🔥🔥 This appears to be a format validation error - likely in the configuration');
+      } else if (error.message?.includes('NetworkError')) {
+        userMessage += 'Network connection failed. Please check your internet connection.';
+      } else {
+        userMessage += 'An unexpected error occurred. Please try again.';
       }
 
-      throw error; // Re-throw so calling code can handle it
+      // Show a cleaner user-facing alert
+      alert(`Authentication Error\n\n${userMessage}`);
+
+      throw new Error(userMessage);
     }
   }
 
@@ -142,7 +136,7 @@ export class AuthService {
     App.addListener('appUrlOpen', async (data) => {
       console.log('Deep link received:', data.url);
 
-      if (data.url.includes('localhost:8100') || data.url.includes('happymeapp://localhost/')) {
+      if (data.url.includes('localhost:8100') || data.url.includes('cognitoapp://callback')) {
         try {
           await Browser.close();
           await this.processAuthCallback(data.url);

@@ -204,10 +204,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../environments/environment */ 45312);
 /* harmony import */ var _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular/standalone */ 17241);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 50085);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ 90705);
 /* harmony import */ var _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/shared/footer/footer.component */ 44607);
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/auth.service */ 44796);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common */ 35135);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ 35135);
 
 
 
@@ -280,7 +279,7 @@ let HomePage = class HomePage {
 HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
   selector: 'app-home',
   template: _home_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
-  imports: [_ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonRow, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonCol, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonGrid, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonContent, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonButton, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonCard, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonCardContent, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonCardHeader, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonCardTitle, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonItem, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonLabel, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonSpinner, _angular_router__WEBPACK_IMPORTED_MODULE_12__.RouterLink, _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_4__.FooterComponent, _angular_common__WEBPACK_IMPORTED_MODULE_13__.CommonModule],
+  imports: [_ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonRow, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonCol, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonGrid, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonContent, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonButton, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonCard, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonCardContent, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonCardHeader, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonCardTitle, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonItem, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonLabel, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_11__.IonSpinner, _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_4__.FooterComponent, _angular_common__WEBPACK_IMPORTED_MODULE_12__.CommonModule],
   standalone: true,
   styles: [(_home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
 }), (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__metadata)("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.Title, _services_auth_service__WEBPACK_IMPORTED_MODULE_5__.AuthService, _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router])], HomePage);

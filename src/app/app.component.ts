@@ -17,7 +17,7 @@ import { StatusBar, Style } from '@capacitor/status-bar';
   standalone: true
 })
 export class AppComponent implements OnInit {
-  private REDIRECT_URI = 'happymeapp://callback';
+  private REDIRECT_URI = 'cognitoapp://callback';
   constructor(
     public router: Router,
     private userSrv: UserService,

@@ -27,8 +27,17 @@ if (environment.production) {
 }
 const mobileRedirect = 'cognitoapp://callback';
 const mobileSignOut = 'cognitoapp://callback';
-const webRedirect = 'http://localhost:8100';
-const webSignOut = 'http://localhost:8100';
+const webRedirectDev = 'http://localhost:8100/callback';
+const webSignOutDev = 'http://localhost:8100';
+const webRedirectProd = 'https://cognito-capacitor-login.vercel.app/callback';
+const webSignOutProd = 'https://cognito-capacitor-login.vercel.app';
+
+// Determine if we're in development or production web mode
+const isLocalDev = !environment.production && !isPlatform('capacitor') &&
+                  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+const webRedirect = isLocalDev ? webRedirectDev : webRedirectProd;
+const webSignOut = isLocalDev ? webSignOutDev : webSignOutProd;
 
 Amplify.configure({
   Auth: {
@@ -56,6 +65,8 @@ console.log('🔧 AWS Amplify Configuration:', {
   identityPoolId: environment.awsConfig.identityPoolId,
   cognitoDomain: environment.awsConfig.cognitoDomain,
   platform: isPlatform('capacitor') ? 'capacitor' : 'web',
+  isLocalDev: isLocalDev,
+  hostname: window.location.hostname,
   redirectSignIn: isPlatform('capacitor') ? mobileRedirect : webRedirect,
   redirectSignOut: isPlatform('capacitor') ? mobileSignOut : webSignOut
 });
@@ -82,11 +93,11 @@ Hub.listen('auth', async ({payload}) => {
 if (Capacitor.isNativePlatform()) {
   import('@capacitor/app').then(({ App }) => {
     App.addListener('appUrlOpen', (data: any) => {
-      console.log('Deep link received:', data.url);
+      console.log('🔗 Deep link received:', data.url);
 
       // Check if this is an OAuth callback (custom scheme or Universal Link)
-      if (data.url.includes('cognitoapp://callback') || data.url.includes('https://Travis-ugo.github.io/cognito-universal-links/callback')) {
-        console.log('OAuth callback detected, processing...');
+      if (data.url.includes('cognitoapp://callback') || data.url.includes('https://cognito-capacitor-login.vercel.app/callback')) {
+        console.log('🔗 OAuth callback detected, processing...');
 
         // Extract query parameters from the URL
         try {
@@ -96,7 +107,6 @@ if (Capacitor.isNativePlatform()) {
 
           if (error) {
             console.error('OAuth error:', error);
-            alert(`OAuth error: ${error}`);
           } else if (code) {
             console.log('OAuth code received:', code);
             // Let Amplify handle the token exchange

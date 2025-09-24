@@ -3,7 +3,7 @@
     "details": [
       {
         "appIDs": [
-          "YOUR_TEAM_ID.im.pencil.cognito"
+          "8D26Y9S2HV.im.pencil.cognito"
         ],
         "components": [
           {
@@ -20,7 +20,7 @@
   },
   "webcredentials": {
     "apps": [
-      "YOUR_TEAM_ID.im.pencil.cognito"
+      "8D26Y9S2HV.im.pencil.cognito"
     ]
   }
 }

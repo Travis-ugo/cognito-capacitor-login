@@ -24,8 +24,8 @@ export const environment = {
     oauth: {
       domain: 'eu-north-1bzzl2ybts.auth.eu-north-1.amazoncognito.com',
       scope: ['email', 'openid', 'profile'],
-      redirectSignIn: 'happymeapp://callback',
-      redirectSignOut: 'happymeapp://signout',
+      redirectSignIn: 'cognitoapp://callback',
+      redirectSignOut: 'cognitoapp://callback',
       responseType: 'code'
     }
   },
