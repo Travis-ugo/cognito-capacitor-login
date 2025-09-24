@@ -1519,7 +1519,10 @@ if (_capacitor_core__WEBPACK_IMPORTED_MODULE_7__.Capacitor.isNativePlatform()) {
 (0,_angular_platform_browser__WEBPACK_IMPORTED_MODULE_13__.bootstrapApplication)(_app_app_component__WEBPACK_IMPORTED_MODULE_3__.AppComponent, {
   providers: [(0,_angular_common_http__WEBPACK_IMPORTED_MODULE_14__.provideHttpClient)((0,_angular_common_http__WEBPACK_IMPORTED_MODULE_14__.withInterceptors)([_app_auth_interceptor__WEBPACK_IMPORTED_MODULE_5__.authInterceptor])), (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.importProvidersFrom)(_ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonicModule.forRoot(), _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_16__.IonicStorageModule.forRoot()), (0,ngx_lottie__WEBPACK_IMPORTED_MODULE_17__.provideLottieOptions)({
     player: playerFactory
-  }), (0,_angular_router__WEBPACK_IMPORTED_MODULE_18__.provideRouter)(_app_app_routing_module__WEBPACK_IMPORTED_MODULE_4__.routes, (0,_angular_router__WEBPACK_IMPORTED_MODULE_18__.withHashLocation)())]
+  }),
+  // Use hash routing only for mobile (Capacitor) to avoid file:// protocol issues
+  // Use regular routing for web to support Universal Links and OAuth callbacks
+  (0,_angular_router__WEBPACK_IMPORTED_MODULE_18__.provideRouter)(_app_app_routing_module__WEBPACK_IMPORTED_MODULE_4__.routes, ...((0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [(0,_angular_router__WEBPACK_IMPORTED_MODULE_18__.withHashLocation)()] : []))]
 }).catch(err => console.error(err));
 
 /***/ }),

@@ -131,9 +131,11 @@ bootstrapApplication(AppComponent, {
     provideLottieOptions({
       player: playerFactory
     }),
+    // Use hash routing only for mobile (Capacitor) to avoid file:// protocol issues
+    // Use regular routing for web to support Universal Links and OAuth callbacks
     provideRouter(
       routes,
-      withHashLocation()
+      ...(isPlatform('capacitor') ? [withHashLocation()] : [])
     )
   ],
 }).catch(err => console.error(err));
