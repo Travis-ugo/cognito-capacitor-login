@@ -16,8 +16,8 @@ export const environment = {
     oauth: {
       domain: 'eu-north-1bzzl2ybts.auth.eu-north-1.amazoncognito.com',
       scope: ['email', 'openid', 'profile'],
-      redirectSignIn: 'cognitoapp://callback',
-      redirectSignOut: 'cognitoapp://callback',
+      redirectSignIn: 'tensilapp://callback',
+      redirectSignOut: 'tensilapp://callback',
       responseType: 'code'
     }
   },

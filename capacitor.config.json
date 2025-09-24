@@ -1,5 +1,5 @@
 {
-  "appId": "im.pencil.cognito",
+  "appId": "im.tensil.cognito",
   "appName": "cognito",
   "npmClient": "npm",
   "webDir": "dist",
@@ -17,14 +17,10 @@
       ]
     },
     "App": {
-      "launchUrl": "cognitoapp"
+      "launchUrl": "tensilapp"
     },
     "EdgeToEdge": {
       "backgroundColor": "#132530"
-    },
-    "Branch": {
-      "apikey": "YOUR_BRANCH_KEY_HERE",
-      "enableLogging": false
     }
   },
   "backgroundColor": "#114160",

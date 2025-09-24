@@ -1,5 +1,5 @@
 {
-	"appId": "im.pencil.cognito",
+	"appId": "im.tensil.cognito",
 	"appName": "cognito",
 	"npmClient": "npm",
 	"webDir": "dist",

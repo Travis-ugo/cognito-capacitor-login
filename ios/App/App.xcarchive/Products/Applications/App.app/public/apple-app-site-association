@@ -3,7 +3,7 @@
     "details": [
       {
         "appIDs": [
-          "8D26Y9S2HV.im.pencil.cognito"
+          "8D26Y9S2HV.im.tensil.cognito"
         ],
         "components": [
           {
@@ -20,7 +20,7 @@
   },
   "webcredentials": {
     "apps": [
-      "8D26Y9S2HV.im.pencil.cognito"
+      "8D26Y9S2HV.im.tensil.cognito"
     ]
   }
 }

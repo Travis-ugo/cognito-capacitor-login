@@ -66,7 +66,7 @@ cognitoapp://callback?code=test123
 ### Android Emulator:
 ```bash
 # Use ADB to test deep links
-adb shell am start -W -a android.intent.action.VIEW -d "cognitoapp://callback?code=test123" im.pencil.cognito
+adb shell am start -W -a android.intent.action.VIEW -d "cognitoapp://callback?code=test123" im.tensil.cognito
 ```
 
 ### Real Devices:

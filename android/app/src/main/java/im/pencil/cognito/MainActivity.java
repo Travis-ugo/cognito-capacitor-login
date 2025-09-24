@@ -1,4 +1,4 @@
-package im.pencil.cognito;
+package im.tensil.cognito;
 
 import com.getcapacitor.BridgeActivity;
 

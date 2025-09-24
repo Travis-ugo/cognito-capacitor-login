@@ -44,7 +44,7 @@ let AppComponent = class AppComponent {
   router;
   userSrv;
   utils;
-  REDIRECT_URI = 'cognitoapp://callback';
+  REDIRECT_URI = 'tensilapp://callback';
   constructor(router, userSrv, utils) {
     var _this = this;
     this.router = router;
@@ -972,7 +972,7 @@ let AuthService = class AuthService {
     _capacitor_app__WEBPACK_IMPORTED_MODULE_3__.App.addListener('appUrlOpen', /*#__PURE__*/function () {
       var _ref = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (data) {
         console.log('Deep link received:', data.url);
-        if (data.url.includes('localhost:8100') || data.url.includes('cognitoapp://callback')) {
+        if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback')) {
           try {
             yield _capacitor_browser__WEBPACK_IMPORTED_MODULE_2__.Browser.close();
             yield _this3.processAuthCallback(data.url);
@@ -1219,14 +1219,6 @@ const environment = {
   apiGatewayStage: '',
   subscriptionsIOSAPIKey: '',
   subscriptionsAndroidAPIKey: '',
-  // awsConfig: {
-  //   accountID: '730335457135',
-  //   region: 'eu-north-1', // Replace with your AWS region
-  //   cognitoDomain: 'eu-north-1bzzl2ybts.auth.eu-north-1.amazoncognito.com', // Replace with your Cognito domain
-  //   userPoolId: 'eu-north-1_bZzl2ybtS', // Replace with your User Pool ID
-  //   userPoolClientId: '2j624tdce1fe6kso61d1f0lhoc', // Replace with your App Client ID
-  //   //  // Replace with your Identity Pool ID
-  // },
   awsConfig: {
     region: 'eu-north-1',
     cognitoDomain: 'eu-north-1bzzl2ybts.auth.eu-north-1.amazoncognito.com',
@@ -1237,8 +1229,8 @@ const environment = {
     oauth: {
       domain: 'eu-north-1bzzl2ybts.auth.eu-north-1.amazoncognito.com',
       scope: ['email', 'openid', 'profile'],
-      redirectSignIn: 'cognitoapp://callback',
-      redirectSignOut: 'cognitoapp://callback',
+      redirectSignIn: 'tensilapp://callback',
+      redirectSignOut: 'tensilapp://callback',
       responseType: 'code'
     }
   },
@@ -1424,8 +1416,8 @@ function playerFactory() {
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.production) {
   (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.enableProdMode)();
 }
-const mobileRedirect = 'cognitoapp://callback';
-const mobileSignOut = 'cognitoapp://callback';
+const mobileRedirect = 'tensilapp://callback';
+const mobileSignOut = 'tensilapp://callback';
 const webRedirectDev = 'http://localhost:8100/callback';
 const webSignOutDev = 'http://localhost:8100';
 const webRedirectProd = 'https://cognito-capacitor-login.vercel.app/callback';
@@ -1495,7 +1487,7 @@ if (_capacitor_core__WEBPACK_IMPORTED_MODULE_7__.Capacitor.isNativePlatform()) {
     App.addListener('appUrlOpen', data => {
       console.log('🔗 Deep link received:', data.url);
       // Check if this is an OAuth callback (custom scheme or Universal Link)
-      if (data.url.includes('cognitoapp://callback') || data.url.includes('https://cognito-capacitor-login.vercel.app/callback')) {
+      if (data.url.includes('tensilapp://callback') || data.url.includes('https://cognito-capacitor-login.vercel.app/callback')) {
         console.log('🔗 OAuth callback detected, processing...');
         // Extract query parameters from the URL
         try {
