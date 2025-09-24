@@ -18,15 +18,18 @@
       }
     },
     {
-      "src": "/.well-known/assetlinks.json",
-      "dest": "/.well-known/assetlinks.json",
+      "src": "/.well-known/apple-app-site-association",
+      "dest": "/apple-app-site-association",
       "headers": {
         "Content-Type": "application/json"
       }
     },
     {
-      "src": "/callback",
-      "dest": "/callback/index.html"
+      "src": "/.well-known/assetlinks.json",
+      "dest": "/.well-known/assetlinks.json",
+      "headers": {
+        "Content-Type": "application/json"
+      }
     },
     {
       "src": "/(.*)",
