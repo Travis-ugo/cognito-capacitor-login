@@ -27,6 +27,8 @@ if (environment.production) {
 }
 const mobileRedirect = 'tensilapp://callback';
 const mobileSignOut = 'tensilapp://callback';
+const capacitorRedirect = 'capacitor://localhost/callback';
+const capacitorSignOut = 'capacitor://localhost';
 const webRedirectDev = 'http://localhost:8100/callback';
 const webSignOutDev = 'http://localhost:8100';
 const webRedirectProd = 'https://cognito-capacitor-login.vercel.app/callback';
@@ -48,8 +50,8 @@ Amplify.configure({
       loginWith: {
         oauth: {
           domain: environment.awsConfig.cognitoDomain,
-          redirectSignIn: [isPlatform('capacitor') ? mobileRedirect : webRedirect],
-          redirectSignOut: [isPlatform('capacitor') ? mobileSignOut : webSignOut],
+          redirectSignIn: isPlatform('capacitor') ? [capacitorRedirect, mobileRedirect] : [webRedirect],
+          redirectSignOut: isPlatform('capacitor') ? [capacitorSignOut, mobileSignOut] : [webSignOut],
           responseType: 'code',
           scopes: ['email', 'openid', 'profile'],
         },
@@ -67,24 +69,52 @@ console.log('🔧 AWS Amplify Configuration:', {
   platform: isPlatform('capacitor') ? 'capacitor' : 'web',
   isLocalDev: isLocalDev,
   hostname: window.location.hostname,
-  redirectSignIn: isPlatform('capacitor') ? mobileRedirect : webRedirect,
-  redirectSignOut: isPlatform('capacitor') ? mobileSignOut : webSignOut
+  redirectSignIn: isPlatform('capacitor') ? [capacitorRedirect, mobileRedirect] : [webRedirect],
+  redirectSignOut: isPlatform('capacitor') ? [capacitorSignOut, mobileSignOut] : [webSignOut]
 });
 
 const currentConfig = Amplify.getConfig();
 console.log('🔧 Final Amplify Config:', currentConfig);
+console.log('🔧 OAuth Configuration Details:', {
+  oauthConfig: currentConfig.Auth?.Cognito?.loginWith?.oauth,
+  redirectArrays: {
+    signIn: currentConfig.Auth?.Cognito?.loginWith?.oauth?.redirectSignIn,
+    signOut: currentConfig.Auth?.Cognito?.loginWith?.oauth?.redirectSignOut
+  },
+  scopes: currentConfig.Auth?.Cognito?.loginWith?.oauth?.scopes,
+  responseType: currentConfig.Auth?.Cognito?.loginWith?.oauth?.responseType
+});
 
 Hub.listen('auth', async ({payload}) => {
+  console.log('🎯 Auth Hub Event:', {
+    event: payload.event,
+    data: (payload as any).data,
+    fullPayload: payload
+  });
+
   switch (payload.event) {
     case 'signInWithRedirect':
+      console.log('🎯 signInWithRedirect SUCCESS');
       const router = (window as any).ng?.getInjector()?.get(Router);
       await router?.navigate(['/home']);
       break;
     case 'signInWithRedirect_failure':
-      console.error('Sign in with redirect failed:', payload.data);
+      console.error('🎯 signInWithRedirect FAILED:', {
+        error: (payload as any).data,
+        errorType: typeof (payload as any).data,
+        errorKeys: (payload as any).data ? Object.keys((payload as any).data) : 'no keys',
+        fullError: JSON.stringify((payload as any).data, null, 2)
+      });
       break;
     case 'customOAuthState':
-      const state = payload.data; // this will be customState provided on signInWithRedirect function
+      console.log('🎯 customOAuthState received:', (payload as any).data);
+      const state = (payload as any).data; // this will be customState provided on signInWithRedirect function
+      break;
+    case 'signInWithRedirect_failure':
+      console.error('🎯 OAuth redirect failure event');
+      break;
+    default:
+      console.log('🎯 Unhandled auth event:', payload.event);
       break;
   }
 });

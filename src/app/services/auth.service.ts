@@ -64,8 +64,23 @@ export class AuthService {
       console.error('🔥🔥🔥 Error details:', {
         name: error.name,
         message: error.message,
-        code: error.code
+        code: error.code,
+        stack: error.stack,
+        toString: error.toString(),
+        fullError: JSON.stringify(error, null, 2)
       });
+      console.error('🔥🔥🔥 Error prototype chain:', {
+        constructor: error.constructor.name,
+        prototype: Object.getPrototypeOf(error),
+        ownProperties: Object.getOwnPropertyNames(error),
+        allKeys: Object.keys(error)
+      });
+
+      // Log the full error object structure
+      console.error('🔥🔥🔥 Complete error analysis:');
+      for (const key in error) {
+        console.error(`🔥 error.${key}:`, error[key]);
+      }
 
       // Provide user-friendly error messages based on error type
       let userMessage = 'Authentication failed. ';
