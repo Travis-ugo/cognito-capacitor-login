@@ -97,7 +97,7 @@ export class SignUpComponent implements OnInit {
         // log event in Google Analytics
       }
       // Attempt to sign the user in
-      await this.auth.signIn(this.signInForm.controls.email.value);
+      await this.auth.signInWithUsername(this.signInForm.controls.email.value);
       // Clear form and navigate to the next step
       this.signInForm.patchValue({
         email: '', // Clear the email input field
@@ -105,7 +105,7 @@ export class SignUpComponent implements OnInit {
       await this.router.navigate(['/account/enter-secret-code']);
     } catch (err: any) {
       if(err.name === 'UsernameExistsException') {
-        await this.auth.signIn(this.signInForm.controls.email.value);
+        await this.auth.signInWithUsername(this.signInForm.controls.email.value);
         await this.router.navigate(['/account/enter-secret-code']);
       } else {
         this._errorMessage.next(err.message);

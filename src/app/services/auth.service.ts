@@ -1,11 +1,9 @@
-import {Inject, Injectable} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {from, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {environment} from '../../environments/environment';
-import {Browser} from '@capacitor/browser';
-import {App} from '@capacitor/app';
-import {Capacitor} from '@capacitor/core';
+import { Inject, Injectable } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { from, Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { environment } from "../../environments/environment";
+import { Capacitor } from "@capacitor/core";
 import {
   confirmSignIn,
   deleteUser,
@@ -15,325 +13,228 @@ import {
   signIn,
   signOut,
   signUp,
-  signInWithRedirect
-} from '@aws-amplify/auth';
-import {AuthProvider} from '@aws-amplify/auth/dist/esm/types/inputs';
+  signInWithRedirect,
+} from "@aws-amplify/auth";
+import { AuthProvider } from "@aws-amplify/auth/dist/esm/types/inputs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
-  // Get access to window object in the Angular way
-  private window: Window;
-  constructor(
-      @Inject(DOCUMENT) private document: Document,
-  ) {
-    this.window = this.document.defaultView;
+  private window: Window | null;
+
+  constructor(@Inject(DOCUMENT) private document: Document) {
+    this.window = this.document.defaultView ?? null;
   }
-  async socialSignIn(identityProvider: AuthProvider) {
+
+  /**
+   * ---------- SOCIAL LOGIN (Amplify-managed)
+   * Uses Amplify's signInWithRedirect which builds the Hosted UI URL,
+   * opens the system browser or in-app browser (depending on platform),
+   * and Amplify handles the redirect + token exchange.
+   */
+  public async socialSignIn(identityProvider: AuthProvider): Promise<void> {
     try {
-      console.log('🔥 STARTING SOCIAL SIGN-IN');
-      console.log('🔥 Provider:', identityProvider);
-      console.log('🔥 Platform info:', {
+      console.log("🔥 socialSignIn starting", {
+        provider: identityProvider,
         isNative: Capacitor.isNativePlatform(),
         platform: Capacitor.getPlatform(),
         hostname: this.window?.location?.hostname,
-        production: environment.production
+        production: environment.production,
       });
 
-      // Get the current Amplify configuration to debug
-      const { Amplify } = await import('aws-amplify');
-      const currentConfig = Amplify.getConfig();
-      console.log('🔥 Current Amplify config redirects:', {
-        signIn: currentConfig.Auth?.Cognito?.loginWith?.oauth?.redirectSignIn,
-        signOut: currentConfig.Auth?.Cognito?.loginWith?.oauth?.redirectSignOut
-      });
-
-      // Use Amplify's configured redirect URIs (which are set in main.ts based on environment)
-      console.log('🔥 Attempting Amplify signInWithRedirect...');
-
-      // Log the exact parameters being passed to signInWithRedirect
-      const signInParams = { provider: identityProvider };
-      console.log('🔥 SignInWithRedirect parameters:', JSON.stringify(signInParams, null, 2));
-
-      await signInWithRedirect(signInParams);
-      console.log('🔥 Amplify signInWithRedirect initiated successfully');
-
-    } catch (error: any) {
-      console.error('🔥🔥🔥 ERROR during social sign-in:', error);
-      console.error('🔥🔥🔥 Error details:', {
-        name: error.name,
-        message: error.message,
-        code: error.code,
-        stack: error.stack,
-        toString: error.toString(),
-        fullError: JSON.stringify(error, null, 2)
-      });
-      console.error('🔥🔥🔥 Error prototype chain:', {
-        constructor: error.constructor.name,
-        prototype: Object.getPrototypeOf(error),
-        ownProperties: Object.getOwnPropertyNames(error),
-        allKeys: Object.keys(error)
-      });
-
-      // Log the full error object structure
-      console.error('🔥🔥🔥 Complete error analysis:');
-      for (const key in error) {
-        console.error(`🔥 error.${key}:`, error[key]);
+      // Optional debug: dump current Amplify config (useful when debugging redirect issues)
+      try {
+        const { Amplify } = await import("aws-amplify");
+        const cfg = Amplify.getConfig();
+        console.log("🔧 Amplify config (auth redirects):", {
+          signIn: cfg.Auth?.Cognito?.loginWith?.oauth?.redirectSignIn,
+          signOut: cfg.Auth?.Cognito?.loginWith?.oauth?.redirectSignOut,
+        });
+      } catch (cfgErr) {
+        console.warn("Could not read Amplify config for debug:", cfgErr);
       }
 
-      // Provide user-friendly error messages based on error type
-      let userMessage = 'Authentication failed. ';
+      // Trigger Amplify's hosted UI flow
+      await signInWithRedirect({ provider: identityProvider });
+      console.log("✅ signInWithRedirect initiated");
+    } catch (err: any) {
+      console.error("❌ socialSignIn error", err);
 
-      if (error.message?.includes('InvalidOriginException') || error.message?.includes('redirect')) {
-        userMessage += 'Please ensure the redirect URLs are configured correctly in AWS Cognito.';
-        console.error('🔥🔥🔥 This appears to be a redirect URL configuration error in AWS Cognito');
-      } else if (error.message?.includes('provider')) {
-        userMessage += 'The OAuth provider configuration is incorrect.';
-        console.error('🔥🔥🔥 This appears to be a provider configuration error');
-      } else if (error.message?.includes('NetworkError')) {
-        userMessage += 'Network connection failed. Please check your internet connection.';
-      } else {
-        userMessage += 'An unexpected error occurred. Please try again.';
+      const fallbackMsg = "Authentication failed. Please try again.";
+      let userMessage = fallbackMsg;
+
+      if (
+        err?.message?.includes("InvalidOriginException") ||
+        err?.message?.includes("redirect")
+      ) {
+        userMessage = "Redirect URL mismatch. Check callback URLs in Cognito.";
+      } else if (err?.message?.includes("provider")) {
+        userMessage = "OAuth provider configuration incorrect.";
+      } else if (err?.message?.includes("NetworkError")) {
+        userMessage = "Network error. Check your connection.";
       }
 
-      // Show a cleaner user-facing alert
+      // Friendly user alert (you may replace with Toast)
+      // In production you might want to surface a nicer UI rather than an alert
       alert(`Authentication Error\n\n${userMessage}`);
 
+      // rethrow if caller needs to handle
       throw new Error(userMessage);
     }
   }
 
-  private async handleMobileSocialLogin(provider: AuthProvider) {
+  /**
+   * ---------- USERNAME/PASSWORD SIGN-IN (custom auth aware)
+   * If Cognito returns nextStep with 'CONFIRM_SIGN_IN_WITH_CUSTOM_CHALLENGE',
+   * the caller/UI should call answerCustomChallenge() to complete.
+   */
+  public async signInWithUsername(
+    email: string
+  ): Promise<{ isSignedIn?: boolean; nextStep?: any }> {
     try {
-      console.log('Handling mobile social login for:', provider);
-
-      // Build the OAuth URL manually for mobile - use localhost redirect for in-app browser
-      const authUrl = `https://${environment.awsConfig.cognitoDomain}/oauth2/authorize?` +
-        `client_id=${environment.awsConfig.userPoolClientId}&` +
-        `response_type=code&` +
-        `scope=email+openid+profile&` +
-        `redirect_uri=http://localhost:8100&` +
-        `identity_provider=${provider}`;
-
-      console.log('Opening OAuth URL in browser:', authUrl);
-      alert(`Opening ${provider} OAuth login in in-app browser`);
-
-      // Try using window.open instead of Browser plugin
-      if (this.window) {
-        console.log('Using window.open for OAuth URL');
-        this.window.open(authUrl, '_blank', 'location=yes,hidden=no,closebuttoncaption=Done');
-      } else {
-        console.log('Fallback to Browser plugin');
-        await Browser.open({
-          url: authUrl,
-          windowName: '_blank',
-        });
-      }
-
-      console.log('Browser opened successfully');
-
-      // Set up listener for the deep link callback
-      this.setupDeepLinkListener();
-
-      // Also listen for browser navigation changes
-      this.setupBrowserListener();
-
-    } catch (error) {
-      console.error('Error in mobile social login:', error);
+      const result = await signIn({
+        username: email,
+        options: {
+          authFlowType: "CUSTOM_WITHOUT_SRP", // leave as-is if you rely on custom flow
+        },
+      });
+      // result may contain isSignedIn and nextStep; return it so the UI can react
+      return result;
+    } catch (error: any) {
+      console.error("signInWithUsername error", error);
+      // normalize error for caller
       throw error;
     }
   }
 
-  private setupDeepLinkListener() {
-    console.log('Setting up deep link listener');
-
-    App.addListener('appUrlOpen', async (data) => {
-      console.log('Deep link received:', data.url);
-
-      if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback')) {
-        try {
-          await Browser.close();
-          await this.processAuthCallback(data.url);
-        } catch (error) {
-          console.error('Error processing auth callback:', error);
-        }
-      }
-    });
-  }
-
-  private setupBrowserListener() {
-    console.log('Setting up browser listener');
-
-    Browser.addListener('browserFinished', () => {
-      console.log('Browser closed');
-    });
-
-    Browser.addListener('browserPageLoaded', () => {
-      console.log('Browser page loaded');
-    });
-  }
-
-  private async processAuthCallback(url: string) {
+  /**
+   * Confirm a custom challenge response (e.g., OTP) for the custom auth flow
+   */
+  public async answerCustomChallenge(answer: string): Promise<string> {
     try {
-      console.log('Processing auth callback URL:', url);
+      const { isSignedIn, nextStep } = await confirmSignIn({
+        challengeResponse: answer,
+      });
+      if (isSignedIn) return "isSignedIn";
 
-      // Extract the authorization code from the URL
-      const urlParams = new URLSearchParams(url.split('?')[1]);
-      const code = urlParams.get('code');
-
-      if (code) {
-        console.log('Authorization code received:', code);
-        // Here you would normally exchange the code for tokens
-        // For now, let's redirect to home page
-        alert('OAuth callback received! Code: ' + code);
-        // You can implement token exchange here or let Amplify handle it
-      } else {
-        console.error('No authorization code found in callback URL');
-        alert('OAuth callback error: No authorization code found');
+      if ("additionalInfo" in nextStep) {
+        return JSON.stringify(nextStep.additionalInfo); // 👈 make it a string
       }
-    } catch (error) {
-      console.error('Error processing auth callback:', error);
-      alert('Error processing OAuth callback: ' + error);
+
+      return "Challenge not fully satisfied";
+    } catch (error: any) {
+      console.error("answerCustomChallenge error", error);
+
+      if (error?.name?.includes("EmptyChallengeResponse")) {
+        return "Please enter the code you were emailed";
+      }
+      if (error?.name?.includes("SignInException")) {
+        return "There was an issue, try again or return to login.";
+      }
+      return "There was an issue, please try again.";
     }
   }
-  // Get temporary access keys from the Identity Pool
-  public async getAccessKeys(): Promise<any> {
-    const authSession = await fetchAuthSession();
-    return authSession.credentials;
-  }
-  // Get Cognito username
-  public getUserSub(): Observable<any> {
-    return from(getCurrentUser()).pipe(
-      map(authUser => (authUser.userId))
-    );
-  }
-  // Get Cognito user attributes - observable
-  public getUserAttributes() {
-    return from(fetchUserAttributes()).pipe(
-      map(attributes => (attributes))
-    );
-  }
-  // Get Cognito user email - observable
-  public getUserEmail() {
-    return from(fetchUserAttributes()).pipe(
-      map(attributes => (attributes.email))
-    );
-  }
-  // Get Cognito user attributes - promise
-  public async getUserAttributesPromise() {
-    return await fetchUserAttributes();
-  }
+
+  /**
+   * Sign up (keeps current behaviour with randomly generated password for custom flows)
+   */
   public async signUp(email: string): Promise<boolean> {
     try {
-      const {isSignUpComplete, userId, nextStep} = await signUp({
+      const { isSignUpComplete } = await signUp({
         username: email,
         password: this.getRandomString(30),
-        options: {
-          userAttributes: {
-            email
-          }
-        }
+        options: { userAttributes: { email } },
       });
       return isSignUpComplete;
-    } catch (error) {
-      if (error.name === 'UserLambdaValidationException') {
-        // Throw the cleaned-up error instead of just returning the message
-        throw new Error(error.message.replace(/^PreSignUp failed with error\s*/, ''));
+    } catch (error: any) {
+      console.error("signUp error", error);
+      if (error?.name === "UserLambdaValidationException") {
+        throw new Error(
+          error.message.replace(/^PreSignUp failed with error\s*/, "")
+        );
       }
       throw error;
     }
   }
-  public async signIn(email: string) {
-    try {
-      const { isSignedIn, nextStep } = await signIn({
-        username: email,
-        options: {
-          authFlowType: 'CUSTOM_WITHOUT_SRP'
-        }
-      });
-      if (nextStep.signInStep === 'CONFIRM_SIGN_IN_WITH_CUSTOM_CHALLENGE') {
-        return isSignedIn;
-      }
-    } catch(error: any) {
-			console.error('error signing in', error);
-      return error;
-    }
-  }
-  public async signOut() {
-		try {
-			await signOut();
-		} catch (error) {
-			console.error('error signing out: ', error);
-		}
-  }
-  public async answerCustomChallenge(answer: string) {
-    // @ts-ignore
-		try {
-      const {
-        isSignedIn,
-        nextStep
-      } = await confirmSignIn({ challengeResponse: answer });
-      if (isSignedIn) {
-				// login successful
-        return 'isSignedIn';
-      }
-      if ('additionalInfo' in nextStep) {
-				// login failed, present the nextStep feedback (how many attempts left etc).
-				return nextStep.additionalInfo;
-      }
-    } catch (error: any) {
-      if (error.name.includes('SignInException')) {
-        return 'There was an issue, try again or return to login.';
-      }
-      if (error.name.includes('EmptyChallengeResponse')) {
-        return 'Please enter the code you were emailed';
-      }
-      return 'There was an issue, please login again.';
-		}
-  }
-  private fetchAuthSession() {
-    const getSession = async () => {
-      const {
-        tokens,
-        credentials,
-        identityId,
-        userSub
-      } = await fetchAuthSession();
 
-      const {
-        idToken,
-        accessToken
-      } = tokens;
-      return idToken;
-    }
-    return getSession();
-  }
-  // returns a boolean based on auth state
-  public async isAuthenticated() {
+  /**
+   * Sign out (Amplify)
+   */
+  public async signOut(): Promise<void> {
     try {
-      await this.fetchAuthSession();
-      return true;
+      await signOut();
+    } catch (error) {
+      console.error("signOut error", error);
+    }
+  }
+
+  /**
+   * Delete user
+   */
+  public async deleteUser(): Promise<any> {
+    try {
+      return await deleteUser();
+    } catch (error) {
+      console.error("deleteUser error", error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get basic user/session helpers (uses Amplify under the hood)
+   */
+  public async getAccessKeys(): Promise<any> {
+    const session = await fetchAuthSession();
+    return session.credentials;
+  }
+
+  public getUserSub(): Observable<any> {
+    return from(getCurrentUser()).pipe(map((u) => (u as any).userId));
+  }
+
+  public getUserAttributes(): Observable<any> {
+    return from(fetchUserAttributes());
+  }
+
+  public getUserEmail(): Observable<any> {
+    return from(fetchUserAttributes()).pipe(map((attrs: any) => attrs.email));
+  }
+
+  public async getUserAttributesPromise(): Promise<any> {
+    return await fetchUserAttributes();
+  }
+
+  /**
+   * Avoid shadowing Amplify fetchAuthSession — return id token string
+   */
+  private async fetchIdToken(): Promise<string | undefined> {
+    const { tokens } = await fetchAuthSession();
+    return tokens?.idToken?.toString();
+  }
+
+  public async isAuthenticated(): Promise<boolean> {
+    try {
+      const session = await fetchAuthSession();
+      // Check if we have valid access tokens (not just guest credentials)
+      return !!(session.tokens?.accessToken && session.tokens?.idToken);
     } catch {
       return false;
     }
   }
-  // Get ID Token to make API calls when Cognito authentication is enabled on API Gateway
-  public async getIDToken() {
-      return await this.fetchAuthSession().then((result) => {
-        return result;
-      });
+
+  public async getIDToken(): Promise<string | undefined> {
+    return await this.fetchIdToken();
   }
-  async deleteUser() {
-    return await deleteUser();
-  }
-  // Generate a password to create user but never used as we have a custom auth challenge setup in Cognito
-  private getRandomString(bytes: number) {
+
+  // UTIL
+  private getRandomString(bytes: number): string {
     const randomValues = new Uint8Array(bytes);
-    this.window.crypto.getRandomValues(randomValues);
-    return Array.from(randomValues).map(this.intToHex).join('');
+    this.window?.crypto.getRandomValues(randomValues);
+    return Array.from(randomValues).map(this.intToHex).join("");
   }
-  private intToHex(nr: number) {
-    return nr.toString(16).padStart(2, '0');
+
+  private intToHex(nr: number): string {
+    return nr.toString(16).padStart(2, "0");
   }
 }

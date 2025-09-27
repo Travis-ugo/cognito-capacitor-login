@@ -17,7 +17,7 @@ export const environment = {
       domain: 'eu-north-1bzzl2ybts.auth.eu-north-1.amazoncognito.com',
       scope: ['email', 'openid', 'profile'],
       redirectSignIn: 'tensilapp://callback',
-      redirectSignOut: 'tensilapp://callback',
+      redirectSignOut: 'tensilapp://logout',
       responseType: 'code'
     }
   },

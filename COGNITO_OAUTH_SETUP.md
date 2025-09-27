@@ -5,8 +5,8 @@
 You need to add the following redirect URIs to your AWS Cognito User Pool App Client configuration:
 
 ### 1. Mobile App (Custom Scheme)
-- **Sign-in redirect URI**: `cognitoapp://callback`
-- **Sign-out redirect URI**: `cognitoapp://callback`
+- **Sign-in redirect URI**: `tensilapp://callback`
+- **Sign-out redirect URI**: `tensilapp://callback`
 
 ### 2. Web Development (Localhost)
 - **Sign-in redirect URI**: `http://localhost:8100/callback`
@@ -20,12 +20,12 @@ You need to add the following redirect URIs to your AWS Cognito User Pool App Cl
 
 **Sign-in redirect URIs** (comma-separated):
 ```
-cognitoapp://callback,http://localhost:8100/callback,https://cognito-capacitor-login.vercel.app/callback
+tensilapp://callback,http://localhost:8100/callback,https://cognito-capacitor-login.vercel.app/callback
 ```
 
 **Sign-out redirect URIs** (comma-separated):
 ```
-cognitoapp://callback,http://localhost:8100,https://cognito-capacitor-login.vercel.app
+tensilapp://callback,http://localhost:8100,https://cognito-capacitor-login.vercel.app
 ```
 
 ## How to Configure in AWS Console
@@ -46,7 +46,7 @@ cognitoapp://callback,http://localhost:8100,https://cognito-capacitor-login.verc
 
 The app has been updated to automatically detect the environment:
 
-- **Mobile (Capacitor)**: Uses `cognitoapp://callback`
+- **Mobile (Capacitor)**: Uses `tensilapp://callback`
 - **Web Development**: Uses `http://localhost:8100/callback`
 - **Web Production**: Uses `https://cognito-capacitor-login.vercel.app/callback`
 

@@ -349,7 +349,7 @@ let SignUpComponent = class SignUpComponent {
           // log event in Google Analytics
         }
         // Attempt to sign the user in
-        yield _this.auth.signIn(_this.signInForm.controls.email.value);
+        yield _this.auth.signInWithUsername(_this.signInForm.controls.email.value);
         // Clear form and navigate to the next step
         _this.signInForm.patchValue({
           email: '' // Clear the email input field
@@ -357,7 +357,7 @@ let SignUpComponent = class SignUpComponent {
         yield _this.router.navigate(['/account/enter-secret-code']);
       } catch (err) {
         if (err.name === 'UsernameExistsException') {
-          yield _this.auth.signIn(_this.signInForm.controls.email.value);
+          yield _this.auth.signInWithUsername(_this.signInForm.controls.email.value);
           yield _this.router.navigate(['/account/enter-secret-code']);
         } else {
           _this._errorMessage.next(err.message);
@@ -553,7 +553,7 @@ let SignInComponent = class SignInComponent {
           // logs an event in Google Analytics
         }
         // Attempt to sign the user in
-        yield _this.auth.signIn(_this.signInForm.controls.email.value);
+        yield _this.auth.signInWithUsername(_this.signInForm.controls.email.value);
         // Clear form and navigate to the next step
         _this.signInForm.patchValue({
           email: '' // Clear the email input field
@@ -561,7 +561,7 @@ let SignInComponent = class SignInComponent {
         yield _this.router.navigate(['/account/enter-secret-code']);
       } catch (err) {
         if (err.name === 'UsernameExistsException') {
-          yield _this.auth.signIn(_this.signInForm.controls.email.value);
+          yield _this.auth.signInWithUsername(_this.signInForm.controls.email.value);
           yield _this.router.navigate(['/account/enter-secret-code']);
         } else {
           _this._errorMessage.next(err.message);
@@ -796,10 +796,15 @@ const routes = [{
   component: _sign_in_sign_in_component__WEBPACK_IMPORTED_MODULE_3__.SignInComponent,
   canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_0__.IsNotAuthenticated]
 }, {
-  path: 'register',
+  path: 'signup',
   component: _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_1__.SignUpComponent,
   canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_0__.IsNotAuthenticated]
 }, {
+  path: 'register',
+  redirectTo: 'signup'
+},
+// redirect old route
+{
   path: 'logout',
   component: _sign_out_sign_out_component__WEBPACK_IMPORTED_MODULE_2__.SignOutComponent,
   canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_0__.IsAuthenticated]
@@ -807,7 +812,12 @@ const routes = [{
   path: 'enter-secret-code',
   component: _answer_challenge_answer_challenge_component__WEBPACK_IMPORTED_MODULE_4__.AnswerChallengeComponent,
   canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_0__.IsNotAuthenticated]
-}];
+}, {
+  path: '',
+  redirectTo: 'login',
+  pathMatch: 'full'
+} // default account route
+];
 let AccountRoutingModule = class AccountRoutingModule {};
 AccountRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.NgModule)({
   imports: [_angular_router__WEBPACK_IMPORTED_MODULE_7__.RouterModule.forChild(routes)],

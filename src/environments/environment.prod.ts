@@ -16,8 +16,8 @@ export const environment = {
     oauth: {
       domain: 'eu-north-1bzzl2ybts.auth.eu-north-1.amazoncognito.com',
       scope: ['email', 'openid', 'profile'],
-      redirectSignIn: 'https://cognito-capacitor-login.vercel.app/callback',
-      redirectSignOut: 'https://cognito-capacitor-login.vercel.app',
+      redirectSignIn: 'tensilapp://callback,http://localhost:8100/callback,https://cognito-capacitor-login.vercel.app/callback',
+      redirectSignOut: 'tensilapp://logout,http://localhost:8100,https://cognito-capacitor-login.vercel.app',
       responseType: 'code'
     }
   },

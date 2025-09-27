@@ -9,9 +9,11 @@ import {AnswerChallengeComponent} from './answer-challenge/answer-challenge.comp
 
 const routes: Routes = [
   { path: 'login', component: SignInComponent, canActivate: [IsNotAuthenticated]},
-  { path: 'register', component: SignUpComponent, canActivate: [IsNotAuthenticated]},
+  { path: 'signup', component: SignUpComponent, canActivate: [IsNotAuthenticated]},
+  { path: 'register', redirectTo: 'signup' }, // redirect old route
   { path: 'logout', component: SignOutComponent, canActivate: [IsAuthenticated] },
   { path: 'enter-secret-code', component: AnswerChallengeComponent, canActivate: [IsNotAuthenticated] },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // default account route
 ];
 
 @NgModule({

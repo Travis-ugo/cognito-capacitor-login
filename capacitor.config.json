@@ -6,7 +6,7 @@
   "windowsAndroidStudioPath": "",
   "server": {
     "androidScheme": "https",
-    "iosScheme": "capacitor"
+    "iosScheme": "tensilapp"
   },
   "plugins": {
     "PushNotifications": {

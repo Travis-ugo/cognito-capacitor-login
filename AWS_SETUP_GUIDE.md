@@ -26,10 +26,10 @@ This guide will help you set up AWS Cognito User Pool with Google and Facebook s
      - Allowed OAuth scopes: email, openid, profile, aws.cognito.signin.user.admin
      - Allowed callback URLs:
        - `http://localhost:8100` (for web development)
-       - `cognitoapp://callback` (for mobile app)
+       - `tensilapp://callback` (for mobile app)
      - Allowed sign-out URLs:
        - `http://localhost:8100` (for web development)
-       - `cognitoapp://callback` (for mobile app)
+       - `tensilapp://callback` (for mobile app)
 
 ## Step 2: Set up Social Identity Providers
 
@@ -121,4 +121,4 @@ For Capacitor mobile apps, you'll need to:
 2. Handle deep links in native code
 3. Test on actual devices or simulators
 
-The app is already configured with the custom scheme `cognitoapp://callback`
+The app is already configured with the custom scheme `tensilapp://callback`

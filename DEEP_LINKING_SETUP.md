@@ -28,16 +28,16 @@ Your app has been configured for deep linking with the custom scheme `happymeapp
 ### Update Allowed Callback URLs:
 ```
 http://localhost:8100
-cognitoapp://callback
+tensilapp://callback
 ```
 
 ### Update Allowed Sign-out URLs:
 ```
 http://localhost:8100
-cognitoapp://callback
+tensilapp://callback
 ```
 
-**Important**: Use the exact format `cognitoapp://callback` without trailing slashes
+**Important**: Use the exact format `tensilapp://callback` without trailing slashes
 
 ## 📱 How Deep Linking Works:
 
@@ -45,7 +45,7 @@ cognitoapp://callback
 1. User taps social login button
 2. App opens Cognito OAuth URL in Safari/WebView
 3. User completes OAuth with Google/Facebook
-4. Cognito redirects to `cognitoapp://callback?code=...`
+4. Cognito redirects to `tensilapp://callback?code=...`
 5. iOS opens your app with the deep link
 6. App processes the OAuth code and completes login
 
@@ -60,13 +60,13 @@ cognitoapp://callback
 ### iOS Simulator:
 ```bash
 # Open this URL in Safari on the simulator
-cognitoapp://callback?code=test123
+tensilapp://callback?code=test123
 ```
 
 ### Android Emulator:
 ```bash
 # Use ADB to test deep links
-adb shell am start -W -a android.intent.action.VIEW -d "cognitoapp://callback?code=test123" im.tensil.cognito
+adb shell am start -W -a android.intent.action.VIEW -d "tensilapp://callback?code=test123" im.tensil.cognito
 ```
 
 ### Real Devices:

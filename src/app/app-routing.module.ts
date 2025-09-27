@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {IsAuthenticated} from './auth.guard';
+import {IsAuthenticated, IsNotAuthenticated} from './auth.guard';
 
 export const routes: Routes = [
-  // INTRO
+  // INTRO - only show to unauthenticated users
   {
     path: '',
     loadComponent: () => import('./pages/intro/intro.page').then( c => c.IntroPage),
+    canActivate: [IsNotAuthenticated]
   },
   // HOME
   {
@@ -23,10 +24,10 @@ export const routes: Routes = [
     path: 'callback',
     loadComponent: () => import('./pages/account/callback/callback.component').then( c => c.CallbackComponent),
   },
-  // 404 page
+  // 404 page - redirect to login for unauthenticated users
   {
     path: '**',
-    loadComponent: () => import('./pages/intro/intro.page').then( c => c.IntroPage),
+    redirectTo: '/account/login'
   }
 ];
 

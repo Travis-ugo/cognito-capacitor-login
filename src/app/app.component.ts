@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   ) {
 
     App.addListener('appUrlOpen', async (event: {url: string}) => {
+      console.log("🔗 Deep link received:", event.url); 
       const incoming = event.url;
       console.log('Deep link received:', incoming);
 
@@ -40,7 +41,7 @@ export class AppComponent implements OnInit {
 
           if (error) {
             console.error('OAuth error:', error);
-            this.router.navigate(['/account/signup']);
+            this.router.navigate(['/account/login']);
             return;
           }
 
@@ -55,15 +56,16 @@ export class AppComponent implements OnInit {
             try {
               const user = await getCurrentUser();
               console.log('User authenticated via deep link:', user);
-              this.router.navigate(['/home']);
+              // Let the router guards handle navigation based on auth state
+              this.router.navigate(['/']);
             } catch (authError) {
               console.error('Authentication failed after deep link:', authError);
-              this.router.navigate(['/account/signup']);
+              this.router.navigate(['/account/login']);
             }
           }
         } catch (parseError) {
           console.error('Error parsing deep link URL:', parseError);
-          this.router.navigate(['/account/signup']);
+          this.router.navigate(['/account/login']);
         }
       }
     });
@@ -89,12 +91,12 @@ export class AppComponent implements OnInit {
         const user = await getCurrentUser();
         console.log('User authenticated:', user);
 
-        // Navigate to home page
-        this.router.navigate(['/home']);
+        // Let the router guards handle navigation based on auth state
+        this.router.navigate(['/']);
       } catch (error) {
         console.error('Authentication failed:', error);
         // If authentication failed, redirect to signup page
-        this.router.navigate(['/account/signup']);
+        this.router.navigate(['/account/login']);
       }
     }
   }
