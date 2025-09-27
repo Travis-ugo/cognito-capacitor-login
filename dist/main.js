@@ -44,7 +44,7 @@ let AppComponent = class AppComponent {
   router;
   userSrv;
   utils;
-  REDIRECT_URI = 'tensilapp://callback';
+  REDIRECT_URIS = ['tensilapp://callback', 'capacitor://callback'];
   constructor(router, userSrv, utils) {
     var _this = this;
     this.router = router;
@@ -55,7 +55,7 @@ let AppComponent = class AppComponent {
         const incoming = event.url;
         console.log('Deep link received:', incoming);
         // Check if this is an OAuth callback
-        if (incoming.startsWith(_this.REDIRECT_URI)) {
+        if (_this.REDIRECT_URIS.some(uri => incoming.startsWith(uri))) {
           console.log('OAuth callback detected:', incoming);
           try {
             // Parse the URL to extract parameters
@@ -986,7 +986,7 @@ let AuthService = class AuthService {
     _capacitor_app__WEBPACK_IMPORTED_MODULE_3__.App.addListener('appUrlOpen', /*#__PURE__*/function () {
       var _ref = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (data) {
         console.log('Deep link received:', data.url);
-        if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback')) {
+        if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback') || data.url.includes('capacitor://callback')) {
           try {
             yield _capacitor_browser__WEBPACK_IMPORTED_MODULE_2__.Browser.close();
             yield _this3.processAuthCallback(data.url);
@@ -1433,7 +1433,9 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.productio
 const mobileRedirect = 'tensilapp://callback';
 const mobileSignOut = 'tensilapp://callback';
 const capacitorRedirect = 'capacitor://localhost/callback';
+const capacitorCallback = 'capacitor://callback';
 const capacitorSignOut = 'capacitor://localhost';
+const capacitorCallbackSignOut = 'capacitor://callback';
 const webRedirectDev = 'http://localhost:8100/callback';
 const webSignOutDev = 'http://localhost:8100';
 const webRedirectProd = 'https://cognito-capacitor-login.vercel.app/callback';
@@ -1451,8 +1453,8 @@ aws_amplify__WEBPACK_IMPORTED_MODULE_10__.DefaultAmplify.configure({
       loginWith: {
         oauth: {
           domain: _environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.awsConfig.cognitoDomain,
-          redirectSignIn: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorRedirect, mobileRedirect] : [webRedirect],
-          redirectSignOut: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorSignOut, mobileSignOut] : [webSignOut],
+          redirectSignIn: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorRedirect, capacitorCallback, mobileRedirect] : [webRedirect],
+          redirectSignOut: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorSignOut, capacitorCallbackSignOut, mobileSignOut] : [webSignOut],
           responseType: 'code',
           scopes: ['email', 'openid', 'profile']
         }
@@ -1469,8 +1471,8 @@ console.log('🔧 AWS Amplify Configuration:', {
   platform: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? 'capacitor' : 'web',
   isLocalDev: isLocalDev,
   hostname: window.location.hostname,
-  redirectSignIn: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorRedirect, mobileRedirect] : [webRedirect],
-  redirectSignOut: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorSignOut, mobileSignOut] : [webSignOut]
+  redirectSignIn: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorRedirect, capacitorCallback, mobileRedirect] : [webRedirect],
+  redirectSignOut: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorSignOut, capacitorCallbackSignOut, mobileSignOut] : [webSignOut]
 });
 const currentConfig = aws_amplify__WEBPACK_IMPORTED_MODULE_10__.DefaultAmplify.getConfig();
 console.log('🔧 Final Amplify Config:', currentConfig);
@@ -1530,7 +1532,7 @@ if (_capacitor_core__WEBPACK_IMPORTED_MODULE_7__.Capacitor.isNativePlatform()) {
     App.addListener('appUrlOpen', data => {
       console.log('🔗 Deep link received:', data.url);
       // Check if this is an OAuth callback (custom scheme or Universal Link)
-      if (data.url.includes('tensilapp://callback') || data.url.includes('https://cognito-capacitor-login.vercel.app/callback')) {
+      if (data.url.includes('tensilapp://callback') || data.url.includes('capacitor://callback') || data.url.includes('https://cognito-capacitor-login.vercel.app/callback')) {
         console.log('🔗 OAuth callback detected, processing...');
         // Extract query parameters from the URL
         try {

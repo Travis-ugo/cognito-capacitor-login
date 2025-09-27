@@ -17,7 +17,7 @@ import { StatusBar, Style } from '@capacitor/status-bar';
   standalone: true
 })
 export class AppComponent implements OnInit {
-  private REDIRECT_URI = 'tensilapp://callback';
+  private REDIRECT_URIS = ['tensilapp://callback', 'capacitor://callback'];
   constructor(
     public router: Router,
     private userSrv: UserService,
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       console.log('Deep link received:', incoming);
 
       // Check if this is an OAuth callback
-      if (incoming.startsWith(this.REDIRECT_URI)) {
+      if (this.REDIRECT_URIS.some(uri => incoming.startsWith(uri))) {
         console.log('OAuth callback detected:', incoming);
 
         try {

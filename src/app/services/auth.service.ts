@@ -151,7 +151,7 @@ export class AuthService {
     App.addListener('appUrlOpen', async (data) => {
       console.log('Deep link received:', data.url);
 
-      if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback')) {
+      if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback') || data.url.includes('capacitor://callback')) {
         try {
           await Browser.close();
           await this.processAuthCallback(data.url);
