@@ -6,6 +6,19 @@
   p {
     color: #fff;
   }
+
+  // Safe area spacing for top of screen
+  .safe-area-top {
+    height: env(safe-area-inset-top, 20px); // Use device safe area or fallback to 20px
+    min-height: 20px; // Minimum spacing
+    max-height: 60px; // Maximum spacing to prevent excessive space
+  }
+
+  // Additional spacing for the title block
+  #titleBlock {
+    margin-top: 20px; // Extra spacing after safe area
+    padding-top: 10px;
+  }
   h2 {
   }
   #affirmation-home h2 {

@@ -1,11 +1,17 @@
 <ion-content class="ion-padding" id="homePage">
+  <!-- Safe area spacer -->
+  <div class="safe-area-top"></div>
+
   <ion-grid [fixed]="true">
 
     <ion-row id="titleBlock">
       <ion-col size="12" size-md="10" offset-md="1" size-lg="10" offset-lg="1">
         <h1 class="center">
-          Welcome{{ userAttributes?.given_name ? ', ' + userAttributes.given_name : '' }}!
+          Welcome{{ getFullDisplayName() ? ', ' + getFullDisplayName() : '' }}!
         </h1>
+        <div *ngIf="userAttributes && getFullDisplayName()" class="center" style="margin-top: 10px;">
+          <h2 style="color: var(--ion-color-primary); font-weight: 300;">{{ getFullDisplayName() }}</h2>
+        </div>
       </ion-col>
     </ion-row>
 
@@ -25,9 +31,9 @@
               </div>
 
               <!-- Full Name Display -->
-              <ion-item lines="none" *ngIf="userAttributes.given_name || userAttributes.family_name">
+              <ion-item lines="none" *ngIf="getFullDisplayName()">
                 <ion-label>
-                  <h3>{{ getDisplayName() }}</h3>
+                  <h2 style="color: var(--ion-color-primary); font-weight: 500;">{{ getFullDisplayName() }}</h2>
                   <p>Full Name</p>
                 </ion-label>
               </ion-item>

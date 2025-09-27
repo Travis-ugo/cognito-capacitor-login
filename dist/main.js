@@ -74,7 +74,7 @@ let AppComponent = class AppComponent {
               // Check if user is authenticated
               const {
                 getCurrentUser
-              } = yield __webpack_require__.e(/*! import() */ "node_modules_aws-amplify_auth_dist_esm_index_mjs").then(__webpack_require__.bind(__webpack_require__, /*! @aws-amplify/auth */ 85081));
+              } = yield __webpack_require__.e(/*! import() */ "default-node_modules_aws-amplify_auth_dist_esm_index_mjs").then(__webpack_require__.bind(__webpack_require__, /*! @aws-amplify/auth */ 85081));
               try {
                 const user = yield getCurrentUser();
                 console.log('User authenticated via deep link:', user);
@@ -108,7 +108,7 @@ let AppComponent = class AppComponent {
           // Import Amplify auth functions
           const {
             getCurrentUser
-          } = yield __webpack_require__.e(/*! import() */ "node_modules_aws-amplify_auth_dist_esm_index_mjs").then(__webpack_require__.bind(__webpack_require__, /*! @aws-amplify/auth */ 85081));
+          } = yield __webpack_require__.e(/*! import() */ "default-node_modules_aws-amplify_auth_dist_esm_index_mjs").then(__webpack_require__.bind(__webpack_require__, /*! @aws-amplify/auth */ 85081));
           // Wait a moment for Amplify to process the OAuth callback
           yield new Promise(resolve => setTimeout(resolve, 2000));
           // Check if user is now authenticated
