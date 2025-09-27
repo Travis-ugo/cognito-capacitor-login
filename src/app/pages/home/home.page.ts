@@ -53,6 +53,7 @@ export class HomePage implements OnInit, OnDestroy {
   public userData: UserInterface;
   public userAttributes: any = null;
   public loading = true;
+  public showDebugInfo = false;
   public cdn = environment.cdn;
   public imgCdn = environment.imgCdn;
 
@@ -89,5 +90,46 @@ export class HomePage implements OnInit, OnDestroy {
     } catch (error) {
       console.error('Error signing out:', error);
     }
+  }
+
+  getDisplayName(): string {
+    if (this.userAttributes?.given_name && this.userAttributes?.family_name) {
+      return `${this.userAttributes.given_name} ${this.userAttributes.family_name}`;
+    } else if (this.userAttributes?.given_name) {
+      return this.userAttributes.given_name;
+    } else if (this.userAttributes?.family_name) {
+      return this.userAttributes.family_name;
+    } else if (this.userAttributes?.name) {
+      return this.userAttributes.name;
+    }
+    return 'User';
+  }
+
+  getSocialProvider(): string {
+    if (this.userAttributes?.identities) {
+      try {
+        const identities = JSON.parse(this.userAttributes.identities);
+        if (identities && identities.length > 0) {
+          const provider = identities[0].providerName;
+          return provider === 'Google' ? 'Google Account' :
+                 provider === 'Facebook' ? 'Facebook Account' :
+                 provider === 'Amazon' ? 'Amazon Account' :
+                 provider === 'Apple' ? 'Apple ID' :
+                 `${provider} Account`;
+        }
+      } catch (error) {
+        console.error('Error parsing identities:', error);
+      }
+    }
+    return 'Email/Password';
+  }
+
+  getUserAttributeCount(): number {
+    if (!this.userAttributes) return 0;
+    return Object.keys(this.userAttributes).length;
+  }
+
+  toggleDebugInfo(): void {
+    this.showDebugInfo = !this.showDebugInfo;
   }
 }

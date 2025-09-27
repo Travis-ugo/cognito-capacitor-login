@@ -44,7 +44,7 @@ let AppComponent = class AppComponent {
   router;
   userSrv;
   utils;
-  REDIRECT_URIS = ['tensilapp://callback', 'capacitor://callback'];
+  REDIRECT_URIS = ['tensilapp://callback', 'capacitor://localhost/callback', 'capacitor://callback'];
   constructor(router, userSrv, utils) {
     var _this = this;
     this.router = router;
@@ -986,7 +986,7 @@ let AuthService = class AuthService {
     _capacitor_app__WEBPACK_IMPORTED_MODULE_3__.App.addListener('appUrlOpen', /*#__PURE__*/function () {
       var _ref = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (data) {
         console.log('Deep link received:', data.url);
-        if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback') || data.url.includes('capacitor://callback')) {
+        if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback') || data.url.includes('capacitor://localhost/callback') || data.url.includes('capacitor://callback')) {
           try {
             yield _capacitor_browser__WEBPACK_IMPORTED_MODULE_2__.Browser.close();
             yield _this3.processAuthCallback(data.url);
@@ -1532,7 +1532,7 @@ if (_capacitor_core__WEBPACK_IMPORTED_MODULE_7__.Capacitor.isNativePlatform()) {
     App.addListener('appUrlOpen', data => {
       console.log('🔗 Deep link received:', data.url);
       // Check if this is an OAuth callback (custom scheme or Universal Link)
-      if (data.url.includes('tensilapp://callback') || data.url.includes('capacitor://callback') || data.url.includes('https://cognito-capacitor-login.vercel.app/callback')) {
+      if (data.url.includes('tensilapp://callback') || data.url.includes('capacitor://localhost/callback') || data.url.includes('capacitor://callback') || data.url.includes('https://cognito-capacitor-login.vercel.app/callback')) {
         console.log('🔗 OAuth callback detected, processing...');
         // Extract query parameters from the URL
         try {

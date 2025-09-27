@@ -3,7 +3,9 @@
 
     <ion-row id="titleBlock">
       <ion-col size="12" size-md="10" offset-md="1" size-lg="10" offset-lg="1">
-        <h1 class="center">Welcome Home!</h1>
+        <h1 class="center">
+          Welcome{{ userAttributes?.given_name ? ', ' + userAttributes.given_name : '' }}!
+        </h1>
       </ion-col>
     </ion-row>
 
@@ -15,30 +17,83 @@
           </ion-card-header>
           <ion-card-content>
             <div *ngIf="userAttributes">
+              <!-- Profile Picture Section -->
+              <div *ngIf="userAttributes.picture" style="text-align: center; margin-bottom: 20px;">
+                <img [src]="userAttributes.picture"
+                     alt="Profile Picture"
+                     style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--ion-color-primary);">
+              </div>
+
+              <!-- Full Name Display -->
+              <ion-item lines="none" *ngIf="userAttributes.given_name || userAttributes.family_name">
+                <ion-label>
+                  <h3>{{ getDisplayName() }}</h3>
+                  <p>Full Name</p>
+                </ion-label>
+              </ion-item>
+
+              <!-- Email -->
               <ion-item lines="none">
                 <ion-label>
-                  <h3>Email</h3>
-                  <p>{{ userAttributes.email }}</p>
+                  <h3>{{ userAttributes.email }}</h3>
+                  <p>Email Address</p>
                 </ion-label>
               </ion-item>
-              <ion-item lines="none" *ngIf="userAttributes.given_name">
+
+              <!-- Social Login Provider -->
+              <ion-item lines="none" *ngIf="userAttributes.identities">
                 <ion-label>
-                  <h3>First Name</h3>
-                  <p>{{ userAttributes.given_name }}</p>
+                  <h3>{{ getSocialProvider() }}</h3>
+                  <p>Login Method</p>
                 </ion-label>
               </ion-item>
-              <ion-item lines="none" *ngIf="userAttributes.family_name">
+
+              <!-- Email Verified Status -->
+              <ion-item lines="none" *ngIf="userAttributes.email_verified !== undefined">
                 <ion-label>
-                  <h3>Last Name</h3>
-                  <p>{{ userAttributes.family_name }}</p>
+                  <h3>{{ userAttributes.email_verified === 'true' ? 'Verified' : 'Not Verified' }}</h3>
+                  <p>Email Status</p>
                 </ion-label>
               </ion-item>
-              <ion-item lines="none" *ngIf="userAttributes.picture">
+
+              <!-- Locale/Language -->
+              <ion-item lines="none" *ngIf="userAttributes.locale">
                 <ion-label>
-                  <h3>Profile Picture</h3>
-                  <img [src]="userAttributes.picture" alt="Profile" style="width: 50px; height: 50px; border-radius: 50%;">
+                  <h3>{{ userAttributes.locale }}</h3>
+                  <p>Language/Locale</p>
                 </ion-label>
               </ion-item>
+
+              <!-- Additional Details Section -->
+              <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--ion-color-light);">
+                <h4 style="margin-bottom: 10px;">Account Details</h4>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                  <div style="text-align: center; padding: 10px; background: var(--ion-color-light); border-radius: 8px;">
+                    <strong>{{ userAttributes.sub ? 'Active' : 'Unknown' }}</strong>
+                    <br>
+                    <small>Account Status</small>
+                  </div>
+
+                  <div style="text-align: center; padding: 10px; background: var(--ion-color-light); border-radius: 8px;">
+                    <strong>{{ getUserAttributeCount() }}</strong>
+                    <br>
+                    <small>Profile Fields</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Raw Attributes for Debugging (optional) -->
+              <details style="margin-top: 20px;" *ngIf="showDebugInfo">
+                <summary style="cursor: pointer; color: var(--ion-color-medium);">
+                  <small>Debug Info (Tap to expand)</small>
+                </summary>
+                <pre style="font-size: 12px; background: var(--ion-color-light); padding: 10px; border-radius: 4px; margin-top: 10px; overflow-x: auto;">{{ userAttributes | json }}</pre>
+              </details>
+
+              <ion-button fill="clear" size="small" (click)="toggleDebugInfo()" style="margin-top: 10px;">
+                {{ showDebugInfo ? 'Hide' : 'Show' }} Debug Info
+              </ion-button>
             </div>
             <div *ngIf="!userAttributes">
               <p>No user data available</p>

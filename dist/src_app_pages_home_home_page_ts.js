@@ -231,6 +231,7 @@ let HomePage = class HomePage {
   userData;
   userAttributes = null;
   loading = true;
+  showDebugInfo = false;
   cdn = _environments_environment__WEBPACK_IMPORTED_MODULE_3__.environment.cdn;
   imgCdn = _environments_environment__WEBPACK_IMPORTED_MODULE_3__.environment.imgCdn;
   constructor(titleService, authService, router) {
@@ -268,6 +269,39 @@ let HomePage = class HomePage {
       }
     })();
   }
+  getDisplayName() {
+    if (this.userAttributes?.given_name && this.userAttributes?.family_name) {
+      return `${this.userAttributes.given_name} ${this.userAttributes.family_name}`;
+    } else if (this.userAttributes?.given_name) {
+      return this.userAttributes.given_name;
+    } else if (this.userAttributes?.family_name) {
+      return this.userAttributes.family_name;
+    } else if (this.userAttributes?.name) {
+      return this.userAttributes.name;
+    }
+    return 'User';
+  }
+  getSocialProvider() {
+    if (this.userAttributes?.identities) {
+      try {
+        const identities = JSON.parse(this.userAttributes.identities);
+        if (identities && identities.length > 0) {
+          const provider = identities[0].providerName;
+          return provider === 'Google' ? 'Google Account' : provider === 'Facebook' ? 'Facebook Account' : provider === 'Amazon' ? 'Amazon Account' : provider === 'Apple' ? 'Apple ID' : `${provider} Account`;
+        }
+      } catch (error) {
+        console.error('Error parsing identities:', error);
+      }
+    }
+    return 'Email/Password';
+  }
+  getUserAttributeCount() {
+    if (!this.userAttributes) return 0;
+    return Object.keys(this.userAttributes).length;
+  }
+  toggleDebugInfo() {
+    this.showDebugInfo = !this.showDebugInfo;
+  }
   static ctorParameters = () => [{
     type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.Title
   }, {
@@ -294,7 +328,7 @@ HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_angular_core__
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-content class=\"ion-padding\" id=\"homePage\">\n  <ion-grid [fixed]=\"true\">\n\n    <ion-row id=\"titleBlock\">\n      <ion-col size=\"12\" size-md=\"10\" offset-md=\"1\" size-lg=\"10\" offset-lg=\"1\">\n        <h1 class=\"center\">Welcome Home!</h1>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col size=\"12\" size-md=\"8\" offset-md=\"2\" size-lg=\"6\" offset-lg=\"3\">\n        <ion-card *ngIf=\"!loading; else loadingSpinner\">\n          <ion-card-header>\n            <ion-card-title>Your Profile</ion-card-title>\n          </ion-card-header>\n          <ion-card-content>\n            <div *ngIf=\"userAttributes\">\n              <ion-item lines=\"none\">\n                <ion-label>\n                  <h3>Email</h3>\n                  <p>{{ userAttributes.email }}</p>\n                </ion-label>\n              </ion-item>\n              <ion-item lines=\"none\" *ngIf=\"userAttributes.given_name\">\n                <ion-label>\n                  <h3>First Name</h3>\n                  <p>{{ userAttributes.given_name }}</p>\n                </ion-label>\n              </ion-item>\n              <ion-item lines=\"none\" *ngIf=\"userAttributes.family_name\">\n                <ion-label>\n                  <h3>Last Name</h3>\n                  <p>{{ userAttributes.family_name }}</p>\n                </ion-label>\n              </ion-item>\n              <ion-item lines=\"none\" *ngIf=\"userAttributes.picture\">\n                <ion-label>\n                  <h3>Profile Picture</h3>\n                  <img [src]=\"userAttributes.picture\" alt=\"Profile\" style=\"width: 50px; height: 50px; border-radius: 50%;\">\n                </ion-label>\n              </ion-item>\n            </div>\n            <div *ngIf=\"!userAttributes\">\n              <p>No user data available</p>\n            </div>\n          </ion-card-content>\n        </ion-card>\n\n        <ng-template #loadingSpinner>\n          <ion-card>\n            <ion-card-content>\n              <div style=\"text-align: center; padding: 20px;\">\n                <ion-spinner></ion-spinner>\n                <p>Loading your profile...</p>\n              </div>\n            </ion-card-content>\n          </ion-card>\n        </ng-template>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col size=\"12\" size-md=\"8\" offset-md=\"2\" size-lg=\"6\" offset-lg=\"3\">\n        <ion-button expand=\"block\" color=\"danger\" (click)=\"signOut()\">\n          Sign Out\n        </ion-button>\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n</ion-content>\n\n<app-footer [footerData]=\"footerData\"></app-footer>\n";
+module.exports = "<ion-content class=\"ion-padding\" id=\"homePage\">\n  <ion-grid [fixed]=\"true\">\n\n    <ion-row id=\"titleBlock\">\n      <ion-col size=\"12\" size-md=\"10\" offset-md=\"1\" size-lg=\"10\" offset-lg=\"1\">\n        <h1 class=\"center\">\n          Welcome{{ userAttributes?.given_name ? ', ' + userAttributes.given_name : '' }}!\n        </h1>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col size=\"12\" size-md=\"8\" offset-md=\"2\" size-lg=\"6\" offset-lg=\"3\">\n        <ion-card *ngIf=\"!loading; else loadingSpinner\">\n          <ion-card-header>\n            <ion-card-title>Your Profile</ion-card-title>\n          </ion-card-header>\n          <ion-card-content>\n            <div *ngIf=\"userAttributes\">\n              <!-- Profile Picture Section -->\n              <div *ngIf=\"userAttributes.picture\" style=\"text-align: center; margin-bottom: 20px;\">\n                <img [src]=\"userAttributes.picture\"\n                     alt=\"Profile Picture\"\n                     style=\"width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--ion-color-primary);\">\n              </div>\n\n              <!-- Full Name Display -->\n              <ion-item lines=\"none\" *ngIf=\"userAttributes.given_name || userAttributes.family_name\">\n                <ion-label>\n                  <h3>{{ getDisplayName() }}</h3>\n                  <p>Full Name</p>\n                </ion-label>\n              </ion-item>\n\n              <!-- Email -->\n              <ion-item lines=\"none\">\n                <ion-label>\n                  <h3>{{ userAttributes.email }}</h3>\n                  <p>Email Address</p>\n                </ion-label>\n              </ion-item>\n\n              <!-- Social Login Provider -->\n              <ion-item lines=\"none\" *ngIf=\"userAttributes.identities\">\n                <ion-label>\n                  <h3>{{ getSocialProvider() }}</h3>\n                  <p>Login Method</p>\n                </ion-label>\n              </ion-item>\n\n              <!-- Email Verified Status -->\n              <ion-item lines=\"none\" *ngIf=\"userAttributes.email_verified !== undefined\">\n                <ion-label>\n                  <h3>{{ userAttributes.email_verified === 'true' ? 'Verified' : 'Not Verified' }}</h3>\n                  <p>Email Status</p>\n                </ion-label>\n              </ion-item>\n\n              <!-- Locale/Language -->\n              <ion-item lines=\"none\" *ngIf=\"userAttributes.locale\">\n                <ion-label>\n                  <h3>{{ userAttributes.locale }}</h3>\n                  <p>Language/Locale</p>\n                </ion-label>\n              </ion-item>\n\n              <!-- Additional Details Section -->\n              <div style=\"margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--ion-color-light);\">\n                <h4 style=\"margin-bottom: 10px;\">Account Details</h4>\n\n                <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 10px;\">\n                  <div style=\"text-align: center; padding: 10px; background: var(--ion-color-light); border-radius: 8px;\">\n                    <strong>{{ userAttributes.sub ? 'Active' : 'Unknown' }}</strong>\n                    <br>\n                    <small>Account Status</small>\n                  </div>\n\n                  <div style=\"text-align: center; padding: 10px; background: var(--ion-color-light); border-radius: 8px;\">\n                    <strong>{{ getUserAttributeCount() }}</strong>\n                    <br>\n                    <small>Profile Fields</small>\n                  </div>\n                </div>\n              </div>\n\n              <!-- Raw Attributes for Debugging (optional) -->\n              <details style=\"margin-top: 20px;\" *ngIf=\"showDebugInfo\">\n                <summary style=\"cursor: pointer; color: var(--ion-color-medium);\">\n                  <small>Debug Info (Tap to expand)</small>\n                </summary>\n                <pre style=\"font-size: 12px; background: var(--ion-color-light); padding: 10px; border-radius: 4px; margin-top: 10px; overflow-x: auto;\">{{ userAttributes | json }}</pre>\n              </details>\n\n              <ion-button fill=\"clear\" size=\"small\" (click)=\"toggleDebugInfo()\" style=\"margin-top: 10px;\">\n                {{ showDebugInfo ? 'Hide' : 'Show' }} Debug Info\n              </ion-button>\n            </div>\n            <div *ngIf=\"!userAttributes\">\n              <p>No user data available</p>\n            </div>\n          </ion-card-content>\n        </ion-card>\n\n        <ng-template #loadingSpinner>\n          <ion-card>\n            <ion-card-content>\n              <div style=\"text-align: center; padding: 20px;\">\n                <ion-spinner></ion-spinner>\n                <p>Loading your profile...</p>\n              </div>\n            </ion-card-content>\n          </ion-card>\n        </ng-template>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col size=\"12\" size-md=\"8\" offset-md=\"2\" size-lg=\"6\" offset-lg=\"3\">\n        <ion-button expand=\"block\" color=\"danger\" (click)=\"signOut()\">\n          Sign Out\n        </ion-button>\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n</ion-content>\n\n<app-footer [footerData]=\"footerData\"></app-footer>\n";
 
 /***/ })
 

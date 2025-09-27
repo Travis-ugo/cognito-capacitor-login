@@ -128,7 +128,7 @@ if (Capacitor.isNativePlatform()) {
       console.log('🔗 Deep link received:', data.url);
 
       // Check if this is an OAuth callback (custom scheme or Universal Link)
-      if (data.url.includes('tensilapp://callback') || data.url.includes('capacitor://callback') || data.url.includes('https://cognito-capacitor-login.vercel.app/callback')) {
+      if (data.url.includes('tensilapp://callback') || data.url.includes('capacitor://localhost/callback') || data.url.includes('capacitor://callback') || data.url.includes('https://cognito-capacitor-login.vercel.app/callback')) {
         console.log('🔗 OAuth callback detected, processing...');
 
         // Extract query parameters from the URL

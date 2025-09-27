@@ -17,7 +17,7 @@ import { StatusBar, Style } from '@capacitor/status-bar';
   standalone: true
 })
 export class AppComponent implements OnInit {
-  private REDIRECT_URIS = ['tensilapp://callback', 'capacitor://callback'];
+  private REDIRECT_URIS = ['tensilapp://callback', 'capacitor://localhost/callback', 'capacitor://callback'];
   constructor(
     public router: Router,
     private userSrv: UserService,
