@@ -11,7 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AppComponent: () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 24398);
 /* harmony import */ var _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.html?ngResource */ 61584);
 /* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component.scss?ngResource */ 37282);
@@ -51,7 +51,7 @@ let AppComponent = class AppComponent {
     this.userSrv = userSrv;
     this.utils = utils;
     _capacitor_app__WEBPACK_IMPORTED_MODULE_6__.App.addListener('appUrlOpen', /*#__PURE__*/function () {
-      var _ref = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (event) {
+      var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (event) {
         const incoming = event.url;
         console.log('Deep link received:', incoming);
         // Check if this is an OAuth callback
@@ -97,7 +97,7 @@ let AppComponent = class AppComponent {
   }
   handleOAuthCallback() {
     var _this2 = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // Check if current URL contains OAuth callback parameters
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get('code');
@@ -126,7 +126,7 @@ let AppComponent = class AppComponent {
   }
   ngOnInit() {
     var _this3 = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _capawesome_capacitor_android_edge_to_edge_support__WEBPACK_IMPORTED_MODULE_7__.EdgeToEdge.enable();
       yield _capawesome_capacitor_android_edge_to_edge_support__WEBPACK_IMPORTED_MODULE_7__.EdgeToEdge.setBackgroundColor({
         color: '#132530'
@@ -199,7 +199,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   UtilityService: () => (/* binding */ UtilityService)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 24398);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var _capacitor_device__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/device */ 67801);
@@ -358,13 +358,13 @@ let UtilityService = class UtilityService {
     }, {});
   }
   deviceInfo() {
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return yield _capacitor_device__WEBPACK_IMPORTED_MODULE_1__.Device.getInfo();
     })();
   }
   operatingSystem() {
     var _this = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const deviceInformation = yield _this.deviceInfo();
       const operatingSystem = deviceInformation.operatingSystem; // 'ios' | 'android' | 'windows' | 'mac' | 'unknown'
       if (operatingSystem === 'mac' || operatingSystem === 'ios') {
@@ -393,7 +393,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   UserService: () => (/* binding */ UserService)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 24398);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth.service */ 44796);
@@ -655,7 +655,7 @@ let UserService = class UserService {
       }
     };
     this.utils.operatingSystem().then(/*#__PURE__*/function () {
-      var _ref = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (os) {
+      var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (os) {
         if (os !== 'ios') {
           // await this.analytics.analyticsOptIn(this.preferences.analytics);
         }
@@ -841,7 +841,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AuthService: () => (/* binding */ AuthService)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! tslib */ 24398);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/common */ 19770);
@@ -881,7 +881,7 @@ let AuthService = class AuthService {
   }
   socialSignIn(identityProvider) {
     var _this = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         console.log('🔥 STARTING SOCIAL SIGN-IN');
         console.log('🔥 Provider:', identityProvider);
@@ -951,7 +951,7 @@ let AuthService = class AuthService {
   }
   handleMobileSocialLogin(provider) {
     var _this2 = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         console.log('Handling mobile social login for:', provider);
         // Build the OAuth URL manually for mobile - use localhost redirect for in-app browser
@@ -984,7 +984,7 @@ let AuthService = class AuthService {
     var _this3 = this;
     console.log('Setting up deep link listener');
     _capacitor_app__WEBPACK_IMPORTED_MODULE_3__.App.addListener('appUrlOpen', /*#__PURE__*/function () {
-      var _ref = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (data) {
+      var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (data) {
         console.log('Deep link received:', data.url);
         if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback') || data.url.includes('capacitor://localhost/callback') || data.url.includes('capacitor://callback')) {
           try {
@@ -1010,7 +1010,7 @@ let AuthService = class AuthService {
     });
   }
   processAuthCallback(url) {
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         console.log('Processing auth callback URL:', url);
         // Extract the authorization code from the URL
@@ -1034,7 +1034,7 @@ let AuthService = class AuthService {
   }
   // Get temporary access keys from the Identity Pool
   getAccessKeys() {
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const authSession = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_6__.fetchAuthSession)();
       return authSession.credentials;
     })();
@@ -1053,13 +1053,13 @@ let AuthService = class AuthService {
   }
   // Get Cognito user attributes - promise
   getUserAttributesPromise() {
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_10__.fetchUserAttributes)();
     })();
   }
   signUp(email) {
     var _this4 = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const {
           isSignUpComplete,
@@ -1085,7 +1085,7 @@ let AuthService = class AuthService {
     })();
   }
   signIn(email) {
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const {
           isSignedIn,
@@ -1106,16 +1106,93 @@ let AuthService = class AuthService {
     })();
   }
   signOut() {
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    var _this5 = this;
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
-        yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_13__.signOut)();
+        // Import isPlatform to detect mobile
+        const {
+          isPlatform
+        } = yield Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! @ionic/angular */ 21507));
+        if (isPlatform('capacitor')) {
+          // Mobile logout - clear session manually to avoid browser redirects
+          console.log('🔄 Performing mobile logout...');
+          yield _this5.clearSessionManually();
+        } else {
+          // Web logout - use standard Amplify signOut
+          console.log('🔄 Performing web logout...');
+          yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_13__.signOut)();
+        }
       } catch (error) {
         console.error('error signing out: ', error);
       }
     })();
   }
+  clearSessionManually() {
+    var _this6 = this;
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      try {
+        // Clear all authentication-related storage
+        console.log('🧹 Manually clearing authentication session...');
+        // Try Amplify signOut first to clear internal state
+        try {
+          yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_13__.signOut)();
+          console.log('✅ Amplify signOut successful');
+        } catch (amplifyError) {
+          console.log('⚠️ Amplify signOut failed, continuing with manual cleanup:', amplifyError);
+        }
+        // Clear ALL localStorage (aggressive approach)
+        if (_this6.window?.localStorage) {
+          const allKeys = [];
+          for (let i = 0; i < _this6.window.localStorage.length; i++) {
+            const key = _this6.window.localStorage.key(i);
+            if (key) {
+              allKeys.push(key);
+            }
+          }
+          console.log('🗑️ Clearing localStorage keys:', allKeys);
+          allKeys.forEach(key => _this6.window.localStorage.removeItem(key));
+        }
+        // Clear ALL sessionStorage
+        if (_this6.window?.sessionStorage) {
+          const allKeys = [];
+          for (let i = 0; i < _this6.window.sessionStorage.length; i++) {
+            const key = _this6.window.sessionStorage.key(i);
+            if (key) {
+              allKeys.push(key);
+            }
+          }
+          console.log('🗑️ Clearing sessionStorage keys:', allKeys);
+          allKeys.forEach(key => _this6.window.sessionStorage.removeItem(key));
+        }
+        // Clear cookies related to auth
+        if (_this6.document?.cookie) {
+          const cookies = _this6.document.cookie.split(';');
+          cookies.forEach(cookie => {
+            const [name] = cookie.split('=');
+            if (name && (name.includes('amplify') || name.includes('cognito') || name.includes('auth'))) {
+              _this6.document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+            }
+          });
+        }
+        // Force refresh Amplify configuration
+        try {
+          const {
+            Amplify
+          } = yield __webpack_require__.e(/*! import() */ "node_modules_aws-amplify_dist_esm_index_mjs").then(__webpack_require__.bind(__webpack_require__, /*! aws-amplify */ 36058));
+          console.log('🔄 Clearing Amplify internal state...');
+          // This will clear any cached auth state
+          yield Amplify.configure(Amplify.getConfig());
+        } catch (configError) {
+          console.log('⚠️ Error refreshing Amplify config:', configError);
+        }
+        console.log('✅ Session cleared manually');
+      } catch (error) {
+        console.error('❌ Error clearing session manually:', error);
+      }
+    })();
+  }
   answerCustomChallenge(answer) {
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // @ts-ignore
       try {
         const {
@@ -1145,7 +1222,7 @@ let AuthService = class AuthService {
   }
   fetchAuthSession() {
     const getSession = /*#__PURE__*/function () {
-      var _ref2 = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      var _ref2 = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
         const {
           tokens,
           credentials,
@@ -1166,10 +1243,10 @@ let AuthService = class AuthService {
   }
   // returns a boolean based on auth state
   isAuthenticated() {
-    var _this5 = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    var _this7 = this;
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
-        yield _this5.fetchAuthSession();
+        yield _this7.fetchAuthSession();
         return true;
       } catch {
         return false;
@@ -1178,15 +1255,15 @@ let AuthService = class AuthService {
   }
   // Get ID Token to make API calls when Cognito authentication is enabled on API Gateway
   getIDToken() {
-    var _this6 = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      return yield _this6.fetchAuthSession().then(result => {
+    var _this8 = this;
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      return yield _this8.fetchAuthSession().then(result => {
         return result;
       });
     })();
   }
   deleteUser() {
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_15__.deleteUser)();
     })();
   }
@@ -1307,7 +1384,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   IsAuthenticated: () => (/* binding */ IsAuthenticated),
 /* harmony export */   IsNotAuthenticated: () => (/* binding */ IsNotAuthenticated)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 24398);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 50085);
@@ -1326,7 +1403,7 @@ let IsAuthenticated = class IsAuthenticated {
   }
   canActivate() {
     var _this = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (yield _this.auth.isAuthenticated()) {
         return true;
       }
@@ -1353,7 +1430,7 @@ let IsNotAuthenticated = class IsNotAuthenticated {
   }
   canActivate() {
     var _this2 = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (!(yield _this2.auth.isAuthenticated())) {
         return true;
       }
@@ -1385,7 +1462,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   playerFactory: () => (/* binding */ playerFactory)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var aws_amplify_auth_enable_oauth_listener__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! aws-amplify/auth/enable-oauth-listener */ 92391);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./environments/environment */ 45312);
@@ -1430,11 +1507,11 @@ function playerFactory() {
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.production) {
   (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.enableProdMode)();
 }
-const mobileRedirect = 'tensilapp://callback';
-const mobileSignOut = 'tensilapp://callback';
+const mobileRedirect = 'capacitor://callback';
+const mobileSignOut = 'capacitor://callback';
 const capacitorRedirect = 'capacitor://localhost/callback';
 const capacitorCallback = 'capacitor://callback';
-const capacitorSignOut = 'capacitor://localhost';
+const capacitorSignOut = 'capacitor://callback';
 const capacitorCallbackSignOut = 'capacitor://callback';
 const webRedirectDev = 'http://localhost:8100/callback';
 const webSignOutDev = 'http://localhost:8100';
@@ -1486,7 +1563,7 @@ console.log('🔧 OAuth Configuration Details:', {
   responseType: currentConfig.Auth?.Cognito?.loginWith?.oauth?.responseType
 });
 aws_amplify_utils__WEBPACK_IMPORTED_MODULE_11__.Hub.listen('auth', /*#__PURE__*/function () {
-  var _ref = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* ({
+  var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* ({
     payload
   }) {
     console.log('🎯 Auth Hub Event:', {

@@ -11,7 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   CallbackComponent: () => (/* binding */ CallbackComponent)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 24398);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 50085);
@@ -33,7 +33,7 @@ let CallbackComponent = class CallbackComponent {
   }
   ngOnInit() {
     var _this = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('🔗 OAuth callback component initialized');
       // Log the current URL and parameters for debugging
       const currentUrl = window.location.href;
@@ -64,7 +64,7 @@ let CallbackComponent = class CallbackComponent {
   }
   waitForAuthentication() {
     var _this2 = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (maxAttempts = 10, delayMs = 1000) {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (maxAttempts = 10, delayMs = 1000) {
       for (let attempt = 1; attempt <= maxAttempts; attempt++) {
         try {
           console.log(`🔗 Checking authentication status (attempt ${attempt}/${maxAttempts})...`);

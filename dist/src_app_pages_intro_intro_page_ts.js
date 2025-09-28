@@ -115,7 +115,7 @@ class Action extends _Subscription__WEBPACK_IMPORTED_MODULE_0__.Subscription {
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<!--<ion-progress-bar type=\"indeterminate\" reversed=\"true\" *ngIf=\"!introSlides.length && !loggedIn\" color=\"primary\"></ion-progress-bar>-->\n<ion-content class=\"ion-padding flex-content\" *ngIf=\"!loggedIn\">\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"12\" size-md=\"10\" offset-md=\"1\" size-lg=\"8\" offset-lg=\"2\" class=\"swiper-wrapper\">\n        <swiper-container\n          class=\"intro-swiper\"\n          *ngIf=\"introSlides\"\n          #swiper\n          direction=\"horizontal\"\n          watchSlidesProgress=\"true\"\n          loop=\"false\"\n          auto-height=\"false\"\n          pagination=\"true\"\n          autoplay=\"true\"\n          autoplay-delay=\"5000\"\n          autoplay-disable-on-interaction=\"true\"\n          pagination-type=\"progressbar\"\n          grab-cursor=\"true\">\n          <swiper-slide *ngFor=\"let slide of introSlides\" class=\"ion-padding\">\n            <div class=\"img-content\" *ngIf=\"slide?.dataMap?.image_upload?.length\">\n              <ion-img [src]=\"cdn+slide.dataMap.image_upload[0].thumbUrlPath\" [alt]=\"slide.dataMap.name\" />\n            </div>\n            <h2>{{slide.dataMap.name}}</h2>\n            <div class=\"slide-content\" [innerHTML]=\"slide.dataMap.content\"></div>\n          </swiper-slide>\n        </swiper-container>\n      </ion-col>\n\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n\n<ion-row class=\"dark-bg ion-padding\" *ngIf=\"!loggedIn\">\n  <ion-col size=\"12\" size-md=\"10\" offset-md=\"1\" size-lg=\"8\" offset-lg=\"2\">\n    <ion-button\n      expand=\"block\"\n      routerLink=\"/account/register\">\n      Create an account\n    </ion-button>\n    <ion-button\n      expand=\"block\"\n      fill=\"outline\"\n      router-direction=\"forward\"\n      routerLink=\"/account/login\">\n      Log in\n    </ion-button>\n  </ion-col>\n</ion-row>\n";
+module.exports = "<!-- Debug info at top -->\n<!-- <div style=\"background: yellow; color: black; padding: 10px; text-align: center; position: fixed; top: 0; left: 0; right: 0; z-index: 9999;\">\n  DEBUG: loggedIn = {{loggedIn}}, introSlides.length = {{introSlides?.length || 0}}\n</div> -->\n\n<ion-content class=\"ion-padding flex-content\" *ngIf=\"!loggedIn\">\n  <div style=\"margin-top: 40px;\"> <!-- Space for debug banner -->\n\n    <!-- Loading state -->\n    <!-- <div *ngIf=\"!introSlides || introSlides.length === 0\" style=\"text-align: center; padding: 50px;\">\n      <ion-spinner></ion-spinner>\n      <p style=\"color: white; margin-top: 20px;\">Loading intro content...</p>\n    </div> -->\n\n    <!-- Intro slides content -->\n    <!-- <ion-grid *ngIf=\"introSlides && introSlides.length > 0\">\n      <ion-row>\n        <ion-col size=\"12\" size-md=\"10\" offset-md=\"1\" size-lg=\"8\" offset-lg=\"2\" class=\"swiper-wrapper\">\n          <swiper-container\n            class=\"intro-swiper\"\n            #swiper\n            direction=\"horizontal\"\n            watchSlidesProgress=\"true\"\n            loop=\"false\"\n            auto-height=\"false\"\n            pagination=\"true\"\n            autoplay=\"true\"\n            autoplay-delay=\"5000\"\n            autoplay-disable-on-interaction=\"true\"\n            pagination-type=\"progressbar\"\n            grab-cursor=\"true\">\n            <swiper-slide *ngFor=\"let slide of introSlides\" class=\"ion-padding\">\n              <div class=\"img-content\" *ngIf=\"slide?.dataMap?.image_upload?.length\">\n                <ion-img [src]=\"cdn+slide.dataMap.image_upload[0].thumbUrlPath\" [alt]=\"slide.dataMap.name\" />\n              </div>\n              <h2>{{slide.dataMap.name}}</h2>\n              <div class=\"slide-content\" [innerHTML]=\"slide.dataMap.content\"></div>\n            </swiper-slide>\n          </swiper-container>\n        </ion-col>\n      </ion-row>\n    </ion-grid>  -->\n\n    <div *ngIf=\"introSlides && introSlides.length === 0\" style=\"text-align: center; padding: 50px;\">\n      <h1 style=\"color: white;\">Welcome to HappyMe!</h1>\n      <p style=\"color: white; margin-top: 20px;\">Hi there, login or register.</p>\n    </div>\n\n  </div>\n</ion-content>\n\n<ion-row class=\"dark-bg ion-padding\" *ngIf=\"!loggedIn\">\n  <ion-col size=\"12\" size-md=\"10\" offset-md=\"1\" size-lg=\"8\" offset-lg=\"2\">\n    <ion-button\n      expand=\"block\"\n      routerLink=\"/account/register\">\n      Create an account\n    </ion-button>\n    <ion-button\n      expand=\"block\"\n      fill=\"outline\"\n      router-direction=\"forward\"\n      routerLink=\"/account/login\">\n      Log in\n    </ion-button>\n  </ion-col>\n</ion-row>\n";
 
 /***/ }),
 
@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ApiGatewayService: () => (/* binding */ ApiGatewayService)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 24398);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ 93262);
@@ -195,7 +195,7 @@ let ApiGatewayService = class ApiGatewayService {
   }
   presentToast(_x) {
     var _this = this;
-    return (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (message, duration = 2000) {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (message, duration = 2000) {
       const toast = yield _this.toastController.create({
         message,
         duration,
@@ -272,8 +272,7 @@ app-intro .flex-content {
   height: 100%;
 }
 app-intro .swiper-wrapper {
-  flex: 1; /* This makes the swiper-wrapper expand to fill available space */
-  /* Optionally, if you need to prevent overflow */
+  flex: 1;
   overflow: hidden;
 }
 app-intro .intro-swiper {
@@ -310,7 +309,7 @@ app-intro ion-checkbox::part(helper-text) {
 }
 app-intro ion-checkbox::part(error-text) {
   color: var(--ion-color-danger);
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/intro/intro.page.scss"],"names":[],"mappings":"AAAA;EACE,iFAAA;AACF;AAAE;EACE,aAAA;EACA,sBAAA;EACA,YAAA;AAEJ;AAAE;EACE,OAAA,EAAA,iEAAA;EACA,gDAAA;EACA,gBAAA;AAEJ;AAAE;EACE,gBAAA;EACA,YAAA;AAEJ;AAAE;EACE,aAAA;EACA,sBAAA;EACA,gBAAA;EACA,WAAA;AAEJ;AAAE;EACE,WAAA;AAEJ;AAAE;EACE,eAAA;EACA,kBAAA;AAEJ;AAAE;EACE,yBAAA;EACA,aAAA;AAEJ;AAAE;EACE,WAAA;EACA,aAAA;AAEJ;AAAE;EACE,yBAAA;EACA,WAAA;AAEJ;AAAE;EACE,WAAA;AAEJ;AAAE;EACE,8BAAA;AAEJ","sourcesContent":["app-intro {\n  --background: radial-gradient(circle, rgb(12, 80, 123) 0%, rgba(22,34,42,1) 100%);\n  .flex-content {\n    display: flex;\n    flex-direction: column;\n    height: 100%;\n  }\n  .swiper-wrapper {\n    flex: 1; /* This makes the swiper-wrapper expand to fill available space */\n    /* Optionally, if you need to prevent overflow */\n    overflow: hidden;\n  }\n  .intro-swiper {\n    overflow: hidden;\n    height: 100%;\n  }\n  swiper-slide {\n    display: flex;\n    flex-direction: column;\n    margin-top: 10px;\n    width: 100%;\n  }\n  p, h2 {\n    color: #fff;\n  }\n  h2 {\n    font-size: 2rem;\n    text-align: center;\n  }\n  ion-segment-button {\n    --background: transparent;\n    --color: #fff;\n  }\n  .img-content ion-img {\n    width: 100%;\n    height: 100px;\n  }\n  ion-checkbox {\n    --background: transparent;\n    color: #fff;\n  }\n  ion-checkbox::part(helper-text) {\n    color: #fff;\n  }\n  ion-checkbox::part(error-text) {\n    color: var(--ion-color-danger);\n  }\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/intro/intro.page.scss"],"names":[],"mappings":"AAAA;EACE,iFAAA;AACF;AAAE;EACE,aAAA;EACA,sBAAA;EACA,YAAA;AAEJ;AAAE;EACE,OAAA;EACA,gBAAA;AAEJ;AAAE;EACE,gBAAA;EACA,YAAA;AAEJ;AAAE;EACE,aAAA;EACA,sBAAA;EACA,gBAAA;EACA,WAAA;AAEJ;AAAE;EACE,WAAA;AAEJ;AAAE;EACE,eAAA;EACA,kBAAA;AAEJ;AAAE;EACE,yBAAA;EACA,aAAA;AAEJ;AAAE;EACE,WAAA;EACA,aAAA;AAEJ;AAAE;EACE,yBAAA;EACA,WAAA;AAEJ;AAAE;EACE,WAAA;AAEJ;AAAE;EACE,8BAAA;AAEJ","sourcesContent":["app-intro {\n  --background: radial-gradient(circle, rgb(12, 80, 123) 0%, rgba(22,34,42,1) 100%);\n  .flex-content {\n    display: flex;\n    flex-direction: column;\n    height: 100%;\n  }\n  .swiper-wrapper {\n    flex: 1;\n    overflow: hidden;\n  }\n  .intro-swiper {\n    overflow: hidden;\n    height: 100%;\n  }\n  swiper-slide {\n    display: flex;\n    flex-direction: column;\n    margin-top: 10px;\n    width: 100%;\n  }\n  p, h2 {\n    color: #fff;\n  }\n  h2 {\n    font-size: 2rem;\n    text-align: center;\n  }\n  ion-segment-button {\n    --background: transparent;\n    --color: #fff;\n  }\n  .img-content ion-img {\n    width: 100%;\n    height: 100px;\n  }\n  ion-checkbox {\n    --background: transparent;\n    color: #fff;\n  }\n  ion-checkbox::part(helper-text) {\n    color: #fff;\n  }\n  ion-checkbox::part(error-text) {\n    color: var(--ion-color-danger);\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
@@ -627,7 +626,7 @@ let IntroPage = class IntroPage {
   reachedEnd = this._reachedEnd.asObservable();
   isAgreed = false;
   showError = false;
-  loggedIn = true;
+  loggedIn = false;
   constructor(titleService, introSlidesSrv, auth, router, utils) {
     this.titleService = titleService;
     this.introSlidesSrv = introSlidesSrv;
@@ -639,27 +638,47 @@ let IntroPage = class IntroPage {
     this.checkIfLoggedIn();
   }
   checkIfLoggedIn() {
+    console.log('🔍 Intro page: Checking if user is logged in...');
     this.auth.isAuthenticated().then(loggedIn => {
+      console.log('🔍 Intro page: Authentication result:', loggedIn);
       if (loggedIn) {
+        console.log('✅ User is authenticated, redirecting to home...');
         this.loggedIn = true;
         void this.router.navigateByUrl('/home');
       } else {
+        console.log('❌ User is NOT authenticated, showing intro content...');
         this.loggedIn = false;
         this.titleService.setTitle('Welcome to HappyMe');
         this.introSlidesSrv.getSlides().subscribe(introSlides => {
-          if (this.introSlides) {
-            this.introSlides = introSlides;
-            this.swiper = this.swiperRef?.nativeElement.swiper;
-            if (this.swiper) {
-              this.swiper.on('slideChange', () => {
-                this.slideChange();
-              });
-            }
+          console.log('📄 Intro slides received:', introSlides?.length || 0, 'slides');
+          console.log('📄 Raw slides data:', introSlides);
+          // Always set introSlides (even if empty) to prevent infinite loading
+          this.introSlides = introSlides || [];
+          if (this.introSlides && this.introSlides.length > 0) {
+            console.log('✅ Intro slides set, initializing swiper...');
+            // Wait for view to update then initialize swiper
+            setTimeout(() => {
+              this.swiper = this.swiperRef?.nativeElement.swiper;
+              if (this.swiper) {
+                this.swiper.on('slideChange', () => {
+                  this.slideChange();
+                });
+              }
+            }, 100);
           } else {
-            void this.router.navigateByUrl('/home');
+            console.log('⚠️ No intro slides available, showing fallback content...');
+            // Don't redirect, just show the fallback content with login buttons
           }
+        }, error => {
+          console.error('❌ Error loading intro slides:', error);
+          // Set empty array to show fallback content
+          this.introSlides = [];
         });
       }
+    }).catch(error => {
+      console.error('❌ Error checking authentication:', error);
+      console.log('🔄 Assuming not authenticated due to error...');
+      this.loggedIn = false;
     });
   }
   slideChange() {

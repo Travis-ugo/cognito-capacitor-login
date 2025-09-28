@@ -1,7 +1,11 @@
 PODS:
+  - BranchSDK (3.13.1)
   - Capacitor (7.2.0):
     - CapacitorCordova
   - CapacitorApp (7.1.0):
+    - Capacitor
+  - CapacitorBranchDeepLinks (9.0.0):
+    - BranchSDK
     - Capacitor
   - CapacitorBrowser (7.0.2):
     - Capacitor
@@ -22,6 +26,7 @@ PODS:
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
+  - CapacitorBranchDeepLinks (from `../../node_modules/capacitor-branch-deep-links`)
   - "CapacitorBrowser (from `../../node_modules/@capacitor/browser`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorDevice (from `../../node_modules/@capacitor/device`)"
@@ -31,11 +36,17 @@ DEPENDENCIES:
   - "CapacitorShare (from `../../node_modules/@capacitor/share`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
 
+SPEC REPOS:
+  trunk:
+    - BranchSDK
+
 EXTERNAL SOURCES:
   Capacitor:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorApp:
     :path: "../../node_modules/@capacitor/app"
+  CapacitorBranchDeepLinks:
+    :path: "../../node_modules/capacitor-branch-deep-links"
   CapacitorBrowser:
     :path: "../../node_modules/@capacitor/browser"
   CapacitorCordova:
@@ -54,8 +65,10 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/status-bar"
 
 SPEC CHECKSUMS:
+  BranchSDK: 7b5380588ec2950bd6553367e8afa4aead2a11a1
   Capacitor: 03bc7cbdde6a629a8b910a9d7d78c3cc7ed09ea7
   CapacitorApp: 26587c2ce485d88ddb39adb21cac64f8e481afe3
+  CapacitorBranchDeepLinks: faeb50963d42b789a7b3bbd851db9dd5df89e21c
   CapacitorBrowser: 22541e48442de44dc629c214388290d6eecc6ae9
   CapacitorCordova: 5967b9ba03915ef1d585469d6e31f31dc49be96f
   CapacitorDevice: 81ae78d5d1942707caad79276badd458bf6ec603
@@ -65,6 +78,6 @@ SPEC CHECKSUMS:
   CapacitorShare: be166411fa995ead2d39b104aa0aae56d8615c66
   CapacitorStatusBar: 0659ddc7b1713764a05831463d215b177a15d054
 
-PODFILE CHECKSUM: 79c6a23f71db3a2afb2f7c5742401c8e3e6dc2c0
+PODFILE CHECKSUM: 5f6f7b0b059fe31cac96f8ee579ba097da21390e
 
 COCOAPODS: 1.16.2

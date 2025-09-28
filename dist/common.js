@@ -102,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   c: () => (/* binding */ createLockController)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -128,7 +128,7 @@ const createLockController = () => {
    * ```
    */
   const lock = /*#__PURE__*/function () {
-    var _ref = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const p = waitPromise;
       let resolve;
       waitPromise = new Promise(r => resolve = r);
@@ -432,7 +432,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   r: () => (/* binding */ resetContentScrollY),
 /* harmony export */   s: () => (/* binding */ scrollToTop)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var _helpers_78efeec3_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-78efeec3.js */ 59522);
 /* harmony import */ var _index_738d7504_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-738d7504.js */ 97243);
 
@@ -464,7 +464,7 @@ const isIonContent = el => el.tagName === ION_CONTENT_TAG_NAME;
  * or a selector within the host, if supplied through `scrollTarget`.
  */
 const getScrollElement = /*#__PURE__*/function () {
-  var _ref = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
+  var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
     if (isIonContent(el)) {
       yield new Promise(resolve => (0,_helpers_78efeec3_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
       return el.getScrollElement();
@@ -684,7 +684,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   c: () => (/* binding */ createKeyboardController)
 /* harmony export */ });
-/* harmony import */ var _Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var _index_a5d50daf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index-a5d50daf.js */ 96639);
 /* harmony import */ var _keyboard_73175e24_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./keyboard-73175e24.js */ 7726);
 
@@ -735,7 +735,7 @@ const getResizeContainerHeight = resizeMode => {
  * @param keyboardChangeCallback A function to call when the keyboard opens or closes.
  */
 const createKeyboardController = /*#__PURE__*/function () {
-  var _ref = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (keyboardChangeCallback) {
+  var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (keyboardChangeCallback) {
     let keyboardWillShowHandler;
     let keyboardWillHideHandler;
     let keyboardVisible;
@@ -745,7 +745,7 @@ const createKeyboardController = /*#__PURE__*/function () {
      */
     let initialResizeContainerHeight;
     const init = /*#__PURE__*/function () {
-      var _ref2 = (0,_Users_t_r_a_v_s_Downloads_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      var _ref2 = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
         const resizeOptions = yield _keyboard_73175e24_js__WEBPACK_IMPORTED_MODULE_2__.K.getResizeMode();
         const resizeMode = resizeOptions === undefined ? undefined : resizeOptions.mode;
         keyboardWillShowHandler = () => {
