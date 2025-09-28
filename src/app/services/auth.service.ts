@@ -262,9 +262,87 @@ export class AuthService {
   }
   public async signOut() {
 		try {
-			await signOut();
+			// Import isPlatform to detect mobile
+			const { isPlatform } = await import('@ionic/angular');
+
+			if (isPlatform('capacitor')) {
+				// Mobile logout - clear session manually to avoid browser redirects
+				console.log('🔄 Performing mobile logout...');
+				await this.clearSessionManually();
+			} else {
+				// Web logout - use standard Amplify signOut
+				console.log('🔄 Performing web logout...');
+				await signOut();
+			}
 		} catch (error) {
 			console.error('error signing out: ', error);
+		}
+  }
+
+  private async clearSessionManually() {
+		try {
+			// Clear all authentication-related storage
+			console.log('🧹 Manually clearing authentication session...');
+
+			// Try Amplify signOut first to clear internal state
+			try {
+				await signOut();
+				console.log('✅ Amplify signOut successful');
+			} catch (amplifyError) {
+				console.log('⚠️ Amplify signOut failed, continuing with manual cleanup:', amplifyError);
+			}
+
+			// Clear ALL localStorage (aggressive approach)
+			if (this.window?.localStorage) {
+				const allKeys = [];
+				for (let i = 0; i < this.window.localStorage.length; i++) {
+					const key = this.window.localStorage.key(i);
+					if (key) {
+						allKeys.push(key);
+					}
+				}
+				console.log('🗑️ Clearing localStorage keys:', allKeys);
+				allKeys.forEach(key => this.window.localStorage.removeItem(key));
+			}
+
+			// Clear ALL sessionStorage
+			if (this.window?.sessionStorage) {
+				const allKeys = [];
+				for (let i = 0; i < this.window.sessionStorage.length; i++) {
+					const key = this.window.sessionStorage.key(i);
+					if (key) {
+						allKeys.push(key);
+					}
+				}
+				console.log('🗑️ Clearing sessionStorage keys:', allKeys);
+				allKeys.forEach(key => this.window.sessionStorage.removeItem(key));
+			}
+
+			// Clear cookies related to auth
+			if (this.document?.cookie) {
+				const cookies = this.document.cookie.split(';');
+				cookies.forEach(cookie => {
+					const [name] = cookie.split('=');
+					if (name && (name.includes('amplify') || name.includes('cognito') || name.includes('auth'))) {
+						this.document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+					}
+				});
+			}
+
+			// Force refresh Amplify configuration
+			try {
+				const { Amplify } = await import('aws-amplify');
+				console.log('🔄 Clearing Amplify internal state...');
+				// This will clear any cached auth state
+				await Amplify.configure(Amplify.getConfig());
+			} catch (configError) {
+				console.log('⚠️ Error refreshing Amplify config:', configError);
+			}
+
+			console.log('✅ Session cleared manually');
+
+		} catch (error) {
+			console.error('❌ Error clearing session manually:', error);
 		}
   }
   public async answerCustomChallenge(answer: string) {

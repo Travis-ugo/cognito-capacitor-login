@@ -6,8 +6,7 @@ app-intro {
     height: 100%;
   }
   .swiper-wrapper {
-    flex: 1; /* This makes the swiper-wrapper expand to fill available space */
-    /* Optionally, if you need to prevent overflow */
+    flex: 1;
     overflow: hidden;
   }
   .intro-swiper {

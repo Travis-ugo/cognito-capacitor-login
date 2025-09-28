@@ -35,7 +35,13 @@ Thumbs.db
 
 # Capacitor
 ios/App/App/public
+ios/App/App.xcarchive/
+ios/App/.DS_Store
+ios/DerivedData/
 android/app/src/main/assets/public
+android/app/build/
+android/app/capacitor.build.gradle
+android/capacitor.settings.gradle
 
 # Deployment
 .vercel

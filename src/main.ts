@@ -25,11 +25,11 @@ export function playerFactory() {
 if (environment.production) {
   enableProdMode();
 }
-const mobileRedirect = 'tensilapp://callback';
-const mobileSignOut = 'tensilapp://callback';
+const mobileRedirect = 'capacitor://callback';
+const mobileSignOut = 'capacitor://callback';
 const capacitorRedirect = 'capacitor://localhost/callback';
 const capacitorCallback = 'capacitor://callback';
-const capacitorSignOut = 'capacitor://localhost';
+const capacitorSignOut = 'capacitor://callback';
 const capacitorCallbackSignOut = 'capacitor://callback';
 const webRedirectDev = 'http://localhost:8100/callback';
 const webSignOutDev = 'http://localhost:8100';

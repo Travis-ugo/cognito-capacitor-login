@@ -47,7 +47,7 @@ export class IntroPage implements OnInit {
   public reachedEnd = this._reachedEnd.asObservable();
   public isAgreed = false;
   public showError = false;
-  public loggedIn = true;
+  public loggedIn = false;
   constructor(
       private titleService: Title,
       private introSlidesSrv: IntroSlidesService,
@@ -60,28 +60,52 @@ export class IntroPage implements OnInit {
     this.checkIfLoggedIn();
   }
   checkIfLoggedIn() {
+    console.log('🔍 Intro page: Checking if user is logged in...');
+
     this.auth.isAuthenticated().then((loggedIn: boolean) => {
+      console.log('🔍 Intro page: Authentication result:', loggedIn);
+
       if(loggedIn) {
+        console.log('✅ User is authenticated, redirecting to home...');
         this.loggedIn = true;
         void this.router.navigateByUrl('/home');
       } else {
+        console.log('❌ User is NOT authenticated, showing intro content...');
         this.loggedIn = false;
         this.titleService.setTitle ('Welcome to HappyMe');
         this.introSlidesSrv.getSlides().subscribe((introSlides: IntroSlidesInterface[]) => {
-          if (this.introSlides) {
-            this.introSlides = introSlides;
-            this.swiper = this.swiperRef?.nativeElement.swiper;
-            if (this.swiper) {
-              this.swiper.on('slideChange', () => {
-                this.slideChange();
-              });
-            }
+          console.log('📄 Intro slides received:', introSlides?.length || 0, 'slides');
+          console.log('📄 Raw slides data:', introSlides);
+
+          // Always set introSlides (even if empty) to prevent infinite loading
+          this.introSlides = introSlides || [];
+
+          if (this.introSlides && this.introSlides.length > 0) {
+            console.log('✅ Intro slides set, initializing swiper...');
+            // Wait for view to update then initialize swiper
+            setTimeout(() => {
+              this.swiper = this.swiperRef?.nativeElement.swiper;
+              if (this.swiper) {
+                this.swiper.on('slideChange', () => {
+                  this.slideChange();
+                });
+              }
+            }, 100);
           } else {
-            void this.router.navigateByUrl('/home');
+            console.log('⚠️ No intro slides available, showing fallback content...');
+            // Don't redirect, just show the fallback content with login buttons
           }
+        }, (error) => {
+          console.error('❌ Error loading intro slides:', error);
+          // Set empty array to show fallback content
+          this.introSlides = [];
         });
       }
-    })
+    }).catch((error) => {
+      console.error('❌ Error checking authentication:', error);
+      console.log('🔄 Assuming not authenticated due to error...');
+      this.loggedIn = false;
+    });
   }
   slideChange() {
     this._reachedEnd.next(this.swiper.isEnd);

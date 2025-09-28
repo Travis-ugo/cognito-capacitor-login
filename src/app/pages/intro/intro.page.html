@@ -1,35 +1,52 @@
-<!--<ion-progress-bar type="indeterminate" reversed="true" *ngIf="!introSlides.length && !loggedIn" color="primary"></ion-progress-bar>-->
+<!-- Debug info at top -->
+<!-- <div style="background: yellow; color: black; padding: 10px; text-align: center; position: fixed; top: 0; left: 0; right: 0; z-index: 9999;">
+  DEBUG: loggedIn = {{loggedIn}}, introSlides.length = {{introSlides?.length || 0}}
+</div> -->
+
 <ion-content class="ion-padding flex-content" *ngIf="!loggedIn">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12" size-md="10" offset-md="1" size-lg="8" offset-lg="2" class="swiper-wrapper">
-        <swiper-container
-          class="intro-swiper"
-          *ngIf="introSlides"
-          #swiper
-          direction="horizontal"
-          watchSlidesProgress="true"
-          loop="false"
-          auto-height="false"
-          pagination="true"
-          autoplay="true"
-          autoplay-delay="5000"
-          autoplay-disable-on-interaction="true"
-          pagination-type="progressbar"
-          grab-cursor="true">
-          <swiper-slide *ngFor="let slide of introSlides" class="ion-padding">
-            <div class="img-content" *ngIf="slide?.dataMap?.image_upload?.length">
-              <ion-img [src]="cdn+slide.dataMap.image_upload[0].thumbUrlPath" [alt]="slide.dataMap.name" />
-            </div>
-            <h2>{{slide.dataMap.name}}</h2>
-            <div class="slide-content" [innerHTML]="slide.dataMap.content"></div>
-          </swiper-slide>
-        </swiper-container>
-      </ion-col>
+  <div style="margin-top: 40px;"> <!-- Space for debug banner -->
 
-    </ion-row>
-  </ion-grid>
+    <!-- Loading state -->
+    <!-- <div *ngIf="!introSlides || introSlides.length === 0" style="text-align: center; padding: 50px;">
+      <ion-spinner></ion-spinner>
+      <p style="color: white; margin-top: 20px;">Loading intro content...</p>
+    </div> -->
 
+    <!-- Intro slides content -->
+    <!-- <ion-grid *ngIf="introSlides && introSlides.length > 0">
+      <ion-row>
+        <ion-col size="12" size-md="10" offset-md="1" size-lg="8" offset-lg="2" class="swiper-wrapper">
+          <swiper-container
+            class="intro-swiper"
+            #swiper
+            direction="horizontal"
+            watchSlidesProgress="true"
+            loop="false"
+            auto-height="false"
+            pagination="true"
+            autoplay="true"
+            autoplay-delay="5000"
+            autoplay-disable-on-interaction="true"
+            pagination-type="progressbar"
+            grab-cursor="true">
+            <swiper-slide *ngFor="let slide of introSlides" class="ion-padding">
+              <div class="img-content" *ngIf="slide?.dataMap?.image_upload?.length">
+                <ion-img [src]="cdn+slide.dataMap.image_upload[0].thumbUrlPath" [alt]="slide.dataMap.name" />
+              </div>
+              <h2>{{slide.dataMap.name}}</h2>
+              <div class="slide-content" [innerHTML]="slide.dataMap.content"></div>
+            </swiper-slide>
+          </swiper-container>
+        </ion-col>
+      </ion-row>
+    </ion-grid>  -->
+
+    <div *ngIf="introSlides && introSlides.length === 0" style="text-align: center; padding: 50px;">
+      <h1 style="color: white;">Welcome to HappyMe!</h1>
+      <p style="color: white; margin-top: 20px;">Hi there, login or register.</p>
+    </div>
+
+  </div>
 </ion-content>
 
 <ion-row class="dark-bg ion-padding" *ngIf="!loggedIn">

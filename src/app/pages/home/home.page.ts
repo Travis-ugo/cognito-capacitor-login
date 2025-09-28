@@ -170,13 +170,28 @@ export class HomePage implements OnInit, OnDestroy {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async signOut() {
-    try {
-      await this.authService.signOut();
-      await this.router.navigate(['/']);
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
+  signOut() {
+    console.log('🚪 SignOut button clicked!');
+
+    // Clear the session cache
+    this.userAttributes = null;
+    this.loading = false;
+
+    // Call the auth service signOut to clear authentication state
+    this.authService.signOut().then(() => {
+      console.log('✅ User session cleared');
+
+      // Navigate to introduction page after clearing auth
+      this.router.navigate(['/']).then(() => {
+        console.log('✅ Successfully navigated to intro page');
+      }).catch((error) => {
+        console.error('❌ Navigation error:', error);
+      });
+    }).catch((error) => {
+      console.error('❌ Logout error:', error);
+      // Still try to navigate even if logout fails
+      this.router.navigate(['/']);
+    });
   }
 
   getDisplayName(): string {
@@ -287,6 +302,7 @@ export class HomePage implements OnInit, OnDestroy {
   toggleDebugInfo(): void {
     this.showDebugInfo = !this.showDebugInfo;
   }
+
 
   private async getUserDataFromTokens(): Promise<any> {
     try {
