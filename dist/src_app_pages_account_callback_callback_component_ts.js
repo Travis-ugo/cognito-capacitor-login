@@ -35,12 +35,14 @@ let CallbackComponent = class CallbackComponent {
     var _this = this;
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('🔗 OAuth callback component initialized');
-      // Log the current URL and parameters for debugging
-      const currentUrl = window.location.href;
+      // Get parameters from Angular route (for deep link navigation) or URL (for web navigation)
+      const routeParams = _this.route.snapshot.queryParams;
       const urlParams = new URLSearchParams(window.location.search);
-      const code = urlParams.get('code');
-      const error = urlParams.get('error');
+      const code = routeParams['code'] || urlParams.get('code');
+      const error = routeParams['error'] || urlParams.get('error');
+      const currentUrl = window.location.href;
       console.log('🔗 Callback URL:', currentUrl);
+      console.log('🔗 Route params:', routeParams);
       console.log('🔗 OAuth code:', code);
       console.log('🔗 OAuth error:', error);
       if (error) {

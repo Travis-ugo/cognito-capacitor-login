@@ -3,5 +3,6 @@
     <string name="app_name">cognito</string>
     <string name="title_activity_main">cognito</string>
     <string name="package_name">im.tensil.cognito</string>
-    <string name="custom_url_scheme">im.tensil.cognito</string>
+    <string name="custom_url_scheme">tensilapp</string>
+    <string name="branch_key">key_test_hdcBLUy1xZ4JD5dNGGlEhbdApylnJfLy</string>
 </resources>

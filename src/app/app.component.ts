@@ -47,19 +47,10 @@ export class AppComponent implements OnInit {
           if (code) {
             console.log('OAuth code received:', code);
 
-            // Wait for Amplify to process the OAuth callback
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            // Check if user is authenticated
-            const { getCurrentUser } = await import('@aws-amplify/auth');
-            try {
-              const user = await getCurrentUser();
-              console.log('User authenticated via deep link:', user);
-              this.router.navigate(['/home']);
-            } catch (authError) {
-              console.error('Authentication failed after deep link:', authError);
-              this.router.navigate(['/account/signup']);
-            }
+            // Navigate to callback component which has proper retry logic
+            this.router.navigate(['/callback'], {
+              queryParams: { code, state: url.searchParams.get('state') }
+            });
           }
         } catch (parseError) {
           console.error('Error parsing deep link URL:', parseError);

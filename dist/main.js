@@ -69,20 +69,13 @@ let AppComponent = class AppComponent {
             }
             if (code) {
               console.log('OAuth code received:', code);
-              // Wait for Amplify to process the OAuth callback
-              yield new Promise(resolve => setTimeout(resolve, 1000));
-              // Check if user is authenticated
-              const {
-                getCurrentUser
-              } = yield __webpack_require__.e(/*! import() */ "default-node_modules_aws-amplify_auth_dist_esm_index_mjs").then(__webpack_require__.bind(__webpack_require__, /*! @aws-amplify/auth */ 85081));
-              try {
-                const user = yield getCurrentUser();
-                console.log('User authenticated via deep link:', user);
-                _this.router.navigate(['/home']);
-              } catch (authError) {
-                console.error('Authentication failed after deep link:', authError);
-                _this.router.navigate(['/account/signup']);
-              }
+              // Navigate to callback component which has proper retry logic
+              _this.router.navigate(['/callback'], {
+                queryParams: {
+                  code,
+                  state: url.searchParams.get('state')
+                }
+              });
             }
           } catch (parseError) {
             console.error('Error parsing deep link URL:', parseError);

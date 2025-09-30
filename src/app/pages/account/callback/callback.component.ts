@@ -31,13 +31,16 @@ export class CallbackComponent implements OnInit {
   async ngOnInit() {
     console.log('🔗 OAuth callback component initialized');
 
-    // Log the current URL and parameters for debugging
-    const currentUrl = window.location.href;
+    // Get parameters from Angular route (for deep link navigation) or URL (for web navigation)
+    const routeParams = this.route.snapshot.queryParams;
     const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    const error = urlParams.get('error');
+
+    const code = routeParams['code'] || urlParams.get('code');
+    const error = routeParams['error'] || urlParams.get('error');
+    const currentUrl = window.location.href;
 
     console.log('🔗 Callback URL:', currentUrl);
+    console.log('🔗 Route params:', routeParams);
     console.log('🔗 OAuth code:', code);
     console.log('🔗 OAuth error:', error);
 
