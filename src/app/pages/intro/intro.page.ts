@@ -59,16 +59,19 @@ export class IntroPage implements OnInit {
   ngOnInit() {
     this.checkIfLoggedIn();
   }
-  checkIfLoggedIn() {
+  async checkIfLoggedIn() {
     console.log('🔍 Intro page: Checking if user is logged in...');
+    console.log('🔍 Current URL:', window.location.href);
+    console.log('🔍 Current route:', this.router.url);
 
-    this.auth.isAuthenticated().then((loggedIn: boolean) => {
+    try {
+      const loggedIn = await this.auth.isAuthenticated();
       console.log('🔍 Intro page: Authentication result:', loggedIn);
 
       if(loggedIn) {
         console.log('✅ User is authenticated, redirecting to home...');
         this.loggedIn = true;
-        void this.router.navigateByUrl('/home');
+        await this.router.navigateByUrl('/home');
       } else {
         console.log('❌ User is NOT authenticated, showing intro content...');
         this.loggedIn = false;
@@ -101,11 +104,11 @@ export class IntroPage implements OnInit {
           this.introSlides = [];
         });
       }
-    }).catch((error) => {
+    } catch (error) {
       console.error('❌ Error checking authentication:', error);
       console.log('🔄 Assuming not authenticated due to error...');
       this.loggedIn = false;
-    });
+    }
   }
   slideChange() {
     this._reachedEnd.next(this.swiper.isEnd);

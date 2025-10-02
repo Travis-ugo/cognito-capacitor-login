@@ -12,21 +12,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   AppComponent: () => (/* binding */ AppComponent)
 /* harmony export */ });
 /* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 24398);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 24398);
 /* harmony import */ var _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.html?ngResource */ 61584);
 /* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component.scss?ngResource */ 37282);
 /* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var aws_amplify_auth_enable_oauth_listener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! aws-amplify/auth/enable-oauth-listener */ 92391);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 37580);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 50085);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs */ 51567);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 50085);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ 51567);
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/user.service */ 29885);
 /* harmony import */ var _services_utility_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/utility.service */ 25190);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic/angular */ 21507);
-/* harmony import */ var _capacitor_app__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @capacitor/app */ 59326);
-/* harmony import */ var _capawesome_capacitor_android_edge_to_edge_support__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @capawesome/capacitor-android-edge-to-edge-support */ 40496);
-/* harmony import */ var _capacitor_status_bar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @capacitor/status-bar */ 19153);
-
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/angular */ 21507);
+/* harmony import */ var _capawesome_capacitor_android_edge_to_edge_support__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @capawesome/capacitor-android-edge-to-edge-support */ 40496);
+/* harmony import */ var _capacitor_status_bar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @capacitor/status-bar */ 19153);
 
 
 
@@ -44,52 +42,14 @@ let AppComponent = class AppComponent {
   router;
   userSrv;
   utils;
-  REDIRECT_URIS = ['tensilapp://callback', 'capacitor://localhost/callback', 'capacitor://callback'];
   constructor(router, userSrv, utils) {
-    var _this = this;
     this.router = router;
     this.userSrv = userSrv;
     this.utils = utils;
-    _capacitor_app__WEBPACK_IMPORTED_MODULE_6__.App.addListener('appUrlOpen', /*#__PURE__*/function () {
-      var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (event) {
-        const incoming = event.url;
-        console.log('Deep link received:', incoming);
-        // Check if this is an OAuth callback
-        if (_this.REDIRECT_URIS.some(uri => incoming.startsWith(uri))) {
-          console.log('OAuth callback detected:', incoming);
-          try {
-            // Parse the URL to extract parameters
-            const url = new URL(incoming);
-            const code = url.searchParams.get('code');
-            const error = url.searchParams.get('error');
-            if (error) {
-              console.error('OAuth error:', error);
-              _this.router.navigate(['/account/signup']);
-              return;
-            }
-            if (code) {
-              console.log('OAuth code received:', code);
-              // Navigate to callback component which has proper retry logic
-              _this.router.navigate(['/callback'], {
-                queryParams: {
-                  code,
-                  state: url.searchParams.get('state')
-                }
-              });
-            }
-          } catch (parseError) {
-            console.error('Error parsing deep link URL:', parseError);
-            _this.router.navigate(['/account/signup']);
-          }
-        }
-      });
-      return function (_x) {
-        return _ref.apply(this, arguments);
-      };
-    }());
+    // OAuth deep link handling is now in main.ts
   }
   handleOAuthCallback() {
-    var _this2 = this;
+    var _this = this;
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // Check if current URL contains OAuth callback parameters
       const urlParams = new URLSearchParams(window.location.search);
@@ -108,36 +68,36 @@ let AppComponent = class AppComponent {
           const user = yield getCurrentUser();
           console.log('User authenticated:', user);
           // Navigate to home page
-          _this2.router.navigate(['/home']);
+          _this.router.navigate(['/home']);
         } catch (error) {
           console.error('Authentication failed:', error);
           // If authentication failed, redirect to signup page
-          _this2.router.navigate(['/account/signup']);
+          _this.router.navigate(['/account/signup']);
         }
       }
     })();
   }
   ngOnInit() {
-    var _this3 = this;
+    var _this2 = this;
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      yield _capawesome_capacitor_android_edge_to_edge_support__WEBPACK_IMPORTED_MODULE_7__.EdgeToEdge.enable();
-      yield _capawesome_capacitor_android_edge_to_edge_support__WEBPACK_IMPORTED_MODULE_7__.EdgeToEdge.setBackgroundColor({
+      yield _capawesome_capacitor_android_edge_to_edge_support__WEBPACK_IMPORTED_MODULE_6__.EdgeToEdge.enable();
+      yield _capawesome_capacitor_android_edge_to_edge_support__WEBPACK_IMPORTED_MODULE_6__.EdgeToEdge.setBackgroundColor({
         color: '#132530'
       });
-      yield _capacitor_status_bar__WEBPACK_IMPORTED_MODULE_8__.StatusBar.setBackgroundColor({
+      yield _capacitor_status_bar__WEBPACK_IMPORTED_MODULE_7__.StatusBar.setBackgroundColor({
         color: '#132530'
       });
-      yield _capacitor_status_bar__WEBPACK_IMPORTED_MODULE_8__.StatusBar.setStyle({
-        style: _capacitor_status_bar__WEBPACK_IMPORTED_MODULE_8__.Style.Light
+      yield _capacitor_status_bar__WEBPACK_IMPORTED_MODULE_7__.StatusBar.setStyle({
+        style: _capacitor_status_bar__WEBPACK_IMPORTED_MODULE_7__.Style.Light
       });
       // Check if this is an OAuth callback URL
-      _this3.handleOAuthCallback();
+      _this2.handleOAuthCallback();
       try {
         console.log('App initialized - RevenueCat ready');
       } catch (error) {
         console.error('Failed to initialize subscription service', error);
       }
-      _this3.utils.operatingSystem().then(os => {
+      _this2.utils.operatingSystem().then(os => {
         if (os === 'ios') {
           /*this.analyticsSrv.attGetStatus().then((optIn: boolean) => {
             this.userSrv.preferences.analytics = optIn;
@@ -157,26 +117,26 @@ let AppComponent = class AppComponent {
     })();
   }
   watchRoutes() {
-    this.router.events.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_9__.filter)(event => event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_10__.NavigationEnd)).subscribe(event => {
+    this.router.events.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_8__.filter)(event => event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_9__.NavigationEnd)).subscribe(event => {
       const navigationEndEvent = event;
       // this.analyticsSrv.setScreenName(navigationEndEvent.urlAfterRedirects).catch(err => console.error('Failed to set screen name:', err));
     });
   }
   static ctorParameters = () => [{
-    type: _angular_router__WEBPACK_IMPORTED_MODULE_10__.Router
+    type: _angular_router__WEBPACK_IMPORTED_MODULE_9__.Router
   }, {
     type: _services_user_service__WEBPACK_IMPORTED_MODULE_4__.UserService
   }, {
     type: _services_utility_service__WEBPACK_IMPORTED_MODULE_5__.UtilityService
   }];
 };
-AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.Component)({
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
   selector: 'app-root',
   template: _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
-  imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_13__.IonicModule],
+  imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_12__.IonicModule],
   standalone: true,
   styles: [(_app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
-}), (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__metadata)("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_10__.Router, _services_user_service__WEBPACK_IMPORTED_MODULE_4__.UserService, _services_utility_service__WEBPACK_IMPORTED_MODULE_5__.UtilityService])], AppComponent);
+}), (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__metadata)("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_9__.Router, _services_user_service__WEBPACK_IMPORTED_MODULE_4__.UserService, _services_utility_service__WEBPACK_IMPORTED_MODULE_5__.UtilityService])], AppComponent);
 
 
 /***/ }),
@@ -835,25 +795,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   AuthService: () => (/* binding */ AuthService)
 /* harmony export */ });
 /* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! tslib */ 24398);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/core */ 37580);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/common */ 19770);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ 95429);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ 70271);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! tslib */ 24398);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/common */ 19770);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ 95429);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ 70271);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../environments/environment */ 45312);
 /* harmony import */ var _capacitor_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/browser */ 26515);
-/* harmony import */ var _capacitor_app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor/app */ 59326);
-/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @capacitor/core */ 14070);
-/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @aws-amplify/auth */ 22766);
-/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @aws-amplify/auth */ 58586);
-/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @aws-amplify/auth */ 38238);
-/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @aws-amplify/auth */ 25554);
-/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @aws-amplify/auth */ 43244);
-/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @aws-amplify/auth */ 26814);
-/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @aws-amplify/auth */ 93521);
-/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @aws-amplify/auth */ 57950);
-/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @aws-amplify/auth */ 75220);
-
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor/core */ 14070);
+/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @aws-amplify/auth */ 22766);
+/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @aws-amplify/auth */ 58586);
+/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @aws-amplify/auth */ 38238);
+/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @aws-amplify/auth */ 25554);
+/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @aws-amplify/auth */ 43244);
+/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @aws-amplify/auth */ 26814);
+/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @aws-amplify/auth */ 93521);
+/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @aws-amplify/auth */ 57950);
+/* harmony import */ var _aws_amplify_auth__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @aws-amplify/auth */ 75220);
 
 
 
@@ -879,8 +837,8 @@ let AuthService = class AuthService {
         console.log('🔥 STARTING SOCIAL SIGN-IN');
         console.log('🔥 Provider:', identityProvider);
         console.log('🔥 Platform info:', {
-          isNative: _capacitor_core__WEBPACK_IMPORTED_MODULE_4__.Capacitor.isNativePlatform(),
-          platform: _capacitor_core__WEBPACK_IMPORTED_MODULE_4__.Capacitor.getPlatform(),
+          isNative: _capacitor_core__WEBPACK_IMPORTED_MODULE_3__.Capacitor.isNativePlatform(),
+          platform: _capacitor_core__WEBPACK_IMPORTED_MODULE_3__.Capacitor.getPlatform(),
           hostname: _this.window?.location?.hostname,
           production: _environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.production
         });
@@ -900,7 +858,7 @@ let AuthService = class AuthService {
           provider: identityProvider
         };
         console.log('🔥 SignInWithRedirect parameters:', JSON.stringify(signInParams, null, 2));
-        yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_5__.signInWithRedirect)(signInParams);
+        yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_4__.signInWithRedirect)(signInParams);
         console.log('🔥 Amplify signInWithRedirect initiated successfully');
       } catch (error) {
         console.error('🔥🔥🔥 ERROR during social sign-in:', error);
@@ -974,24 +932,9 @@ let AuthService = class AuthService {
     })();
   }
   setupDeepLinkListener() {
-    var _this3 = this;
-    console.log('Setting up deep link listener');
-    _capacitor_app__WEBPACK_IMPORTED_MODULE_3__.App.addListener('appUrlOpen', /*#__PURE__*/function () {
-      var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (data) {
-        console.log('Deep link received:', data.url);
-        if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback') || data.url.includes('capacitor://localhost/callback') || data.url.includes('capacitor://callback')) {
-          try {
-            yield _capacitor_browser__WEBPACK_IMPORTED_MODULE_2__.Browser.close();
-            yield _this3.processAuthCallback(data.url);
-          } catch (error) {
-            console.error('Error processing auth callback:', error);
-          }
-        }
-      });
-      return function (_x) {
-        return _ref.apply(this, arguments);
-      };
-    }());
+    // Deep link handling is now centralized in main.ts
+    // This method is no longer needed but kept for backwards compatibility
+    console.log('Deep link listener setup (now handled in main.ts)');
   }
   setupBrowserListener() {
     console.log('Setting up browser listener');
@@ -1028,39 +971,39 @@ let AuthService = class AuthService {
   // Get temporary access keys from the Identity Pool
   getAccessKeys() {
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const authSession = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_6__.fetchAuthSession)();
+      const authSession = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_5__.fetchAuthSession)();
       return authSession.credentials;
     })();
   }
   // Get Cognito username
   getUserSub() {
-    return (0,rxjs__WEBPACK_IMPORTED_MODULE_7__.from)((0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_8__.getCurrentUser)()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(authUser => authUser.userId));
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.from)((0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_7__.getCurrentUser)()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.map)(authUser => authUser.userId));
   }
   // Get Cognito user attributes - observable
   getUserAttributes() {
-    return (0,rxjs__WEBPACK_IMPORTED_MODULE_7__.from)((0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_10__.fetchUserAttributes)()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(attributes => attributes));
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.from)((0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_9__.fetchUserAttributes)()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.map)(attributes => attributes));
   }
   // Get Cognito user email - observable
   getUserEmail() {
-    return (0,rxjs__WEBPACK_IMPORTED_MODULE_7__.from)((0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_10__.fetchUserAttributes)()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.map)(attributes => attributes.email));
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.from)((0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_9__.fetchUserAttributes)()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.map)(attributes => attributes.email));
   }
   // Get Cognito user attributes - promise
   getUserAttributesPromise() {
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      return yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_10__.fetchUserAttributes)();
+      return yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_9__.fetchUserAttributes)();
     })();
   }
   signUp(email) {
-    var _this4 = this;
+    var _this3 = this;
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const {
           isSignUpComplete,
           userId,
           nextStep
-        } = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_11__.signUp)({
+        } = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_10__.signUp)({
           username: email,
-          password: _this4.getRandomString(30),
+          password: _this3.getRandomString(30),
           options: {
             userAttributes: {
               email
@@ -1083,7 +1026,7 @@ let AuthService = class AuthService {
         const {
           isSignedIn,
           nextStep
-        } = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_12__.signIn)({
+        } = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_11__.signIn)({
           username: email,
           options: {
             authFlowType: 'CUSTOM_WITHOUT_SRP'
@@ -1099,7 +1042,7 @@ let AuthService = class AuthService {
     })();
   }
   signOut() {
-    var _this5 = this;
+    var _this4 = this;
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         // Import isPlatform to detect mobile
@@ -1109,11 +1052,11 @@ let AuthService = class AuthService {
         if (isPlatform('capacitor')) {
           // Mobile logout - clear session manually to avoid browser redirects
           console.log('🔄 Performing mobile logout...');
-          yield _this5.clearSessionManually();
+          yield _this4.clearSessionManually();
         } else {
           // Web logout - use standard Amplify signOut
           console.log('🔄 Performing web logout...');
-          yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_13__.signOut)();
+          yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_12__.signOut)();
         }
       } catch (error) {
         console.error('error signing out: ', error);
@@ -1121,49 +1064,49 @@ let AuthService = class AuthService {
     })();
   }
   clearSessionManually() {
-    var _this6 = this;
+    var _this5 = this;
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         // Clear all authentication-related storage
         console.log('🧹 Manually clearing authentication session...');
         // Try Amplify signOut first to clear internal state
         try {
-          yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_13__.signOut)();
+          yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_12__.signOut)();
           console.log('✅ Amplify signOut successful');
         } catch (amplifyError) {
           console.log('⚠️ Amplify signOut failed, continuing with manual cleanup:', amplifyError);
         }
         // Clear ALL localStorage (aggressive approach)
-        if (_this6.window?.localStorage) {
+        if (_this5.window?.localStorage) {
           const allKeys = [];
-          for (let i = 0; i < _this6.window.localStorage.length; i++) {
-            const key = _this6.window.localStorage.key(i);
+          for (let i = 0; i < _this5.window.localStorage.length; i++) {
+            const key = _this5.window.localStorage.key(i);
             if (key) {
               allKeys.push(key);
             }
           }
           console.log('🗑️ Clearing localStorage keys:', allKeys);
-          allKeys.forEach(key => _this6.window.localStorage.removeItem(key));
+          allKeys.forEach(key => _this5.window.localStorage.removeItem(key));
         }
         // Clear ALL sessionStorage
-        if (_this6.window?.sessionStorage) {
+        if (_this5.window?.sessionStorage) {
           const allKeys = [];
-          for (let i = 0; i < _this6.window.sessionStorage.length; i++) {
-            const key = _this6.window.sessionStorage.key(i);
+          for (let i = 0; i < _this5.window.sessionStorage.length; i++) {
+            const key = _this5.window.sessionStorage.key(i);
             if (key) {
               allKeys.push(key);
             }
           }
           console.log('🗑️ Clearing sessionStorage keys:', allKeys);
-          allKeys.forEach(key => _this6.window.sessionStorage.removeItem(key));
+          allKeys.forEach(key => _this5.window.sessionStorage.removeItem(key));
         }
         // Clear cookies related to auth
-        if (_this6.document?.cookie) {
-          const cookies = _this6.document.cookie.split(';');
+        if (_this5.document?.cookie) {
+          const cookies = _this5.document.cookie.split(';');
           cookies.forEach(cookie => {
             const [name] = cookie.split('=');
             if (name && (name.includes('amplify') || name.includes('cognito') || name.includes('auth'))) {
-              _this6.document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+              _this5.document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
             }
           });
         }
@@ -1191,7 +1134,7 @@ let AuthService = class AuthService {
         const {
           isSignedIn,
           nextStep
-        } = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_14__.confirmSignIn)({
+        } = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_13__.confirmSignIn)({
           challengeResponse: answer
         });
         if (isSignedIn) {
@@ -1215,13 +1158,13 @@ let AuthService = class AuthService {
   }
   fetchAuthSession() {
     const getSession = /*#__PURE__*/function () {
-      var _ref2 = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
         const {
           tokens,
           credentials,
           identityId,
           userSub
-        } = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_6__.fetchAuthSession)();
+        } = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_5__.fetchAuthSession)();
         const {
           idToken,
           accessToken
@@ -1229,35 +1172,50 @@ let AuthService = class AuthService {
         return idToken;
       });
       return function getSession() {
-        return _ref2.apply(this, arguments);
+        return _ref.apply(this, arguments);
       };
     }();
     return getSession();
   }
   // returns a boolean based on auth state
   isAuthenticated() {
-    var _this7 = this;
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
-        yield _this7.fetchAuthSession();
-        return true;
-      } catch {
+        console.log('🔐 Checking authentication status...');
+        // Try to get the current session
+        const session = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_5__.fetchAuthSession)();
+        if (session.tokens?.idToken) {
+          console.log('✅ Valid session found with ID token');
+          // Double-check by getting current user
+          try {
+            const user = yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_7__.getCurrentUser)();
+            console.log('✅ Current user confirmed:', user.userId);
+            return true;
+          } catch (userErr) {
+            console.log('⚠️ Session exists but user not available:', userErr);
+            return false;
+          }
+        }
+        console.log('❌ No valid session tokens found');
+        return false;
+      } catch (err) {
+        console.log('❌ Authentication check failed:', err);
         return false;
       }
     })();
   }
   // Get ID Token to make API calls when Cognito authentication is enabled on API Gateway
   getIDToken() {
-    var _this8 = this;
+    var _this6 = this;
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      return yield _this8.fetchAuthSession().then(result => {
+      return yield _this6.fetchAuthSession().then(result => {
         return result;
       });
     })();
   }
   deleteUser() {
     return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      return yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_15__.deleteUser)();
+      return yield (0,_aws_amplify_auth__WEBPACK_IMPORTED_MODULE_14__.deleteUser)();
     })();
   }
   // Generate a password to create user but never used as we have a custom auth challenge setup in Cognito
@@ -1272,14 +1230,14 @@ let AuthService = class AuthService {
   static ctorParameters = () => [{
     type: Document,
     decorators: [{
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_16__.Inject,
-      args: [_angular_common__WEBPACK_IMPORTED_MODULE_17__.DOCUMENT]
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_15__.Inject,
+      args: [_angular_common__WEBPACK_IMPORTED_MODULE_16__.DOCUMENT]
     }]
   }];
 };
-AuthService = (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_16__.Injectable)({
+AuthService = (0,tslib__WEBPACK_IMPORTED_MODULE_17__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_15__.Injectable)({
   providedIn: 'root'
-}), (0,tslib__WEBPACK_IMPORTED_MODULE_18__.__metadata)("design:paramtypes", [Document])], AuthService);
+}), (0,tslib__WEBPACK_IMPORTED_MODULE_17__.__metadata)("design:paramtypes", [Document])], AuthService);
 
 
 /***/ }),
@@ -1362,6 +1320,82 @@ module.exports = webpackEmptyAsyncContext;
 
 "use strict";
 module.exports = "<ion-app>\n  <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n</ion-app>\n";
+
+/***/ }),
+
+/***/ 77980:
+/*!********************************************!*\
+  !*** ./src/app/utils/capacitor-storage.ts ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CapacitorStorage: () => (/* binding */ CapacitorStorage)
+/* harmony export */ });
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var _capacitor_preferences__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/preferences */ 46493);
+
+
+/**
+ * Custom storage adapter for AWS Amplify that uses Capacitor Preferences
+ * This ensures proper session persistence on mobile devices
+ */
+class CapacitorStorage {
+  setItem(key, value) {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      try {
+        yield _capacitor_preferences__WEBPACK_IMPORTED_MODULE_1__.Preferences.set({
+          key,
+          value
+        });
+        console.log('📦 Storage SET:', key, `(${value.length} chars)`);
+      } catch (error) {
+        console.error('❌ Storage SET failed:', key, error);
+        throw error;
+      }
+    })();
+  }
+  getItem(key) {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      try {
+        const {
+          value
+        } = yield _capacitor_preferences__WEBPACK_IMPORTED_MODULE_1__.Preferences.get({
+          key
+        });
+        console.log('📦 Storage GET:', key, value ? `found (${value.length} chars)` : 'not found');
+        return value;
+      } catch (error) {
+        console.error('❌ Storage GET failed:', key, error);
+        return null;
+      }
+    })();
+  }
+  removeItem(key) {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      try {
+        yield _capacitor_preferences__WEBPACK_IMPORTED_MODULE_1__.Preferences.remove({
+          key
+        });
+        console.log('📦 Storage REMOVE:', key);
+      } catch (error) {
+        console.error('❌ Storage REMOVE failed:', key, error);
+      }
+    })();
+  }
+  clear() {
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      try {
+        yield _capacitor_preferences__WEBPACK_IMPORTED_MODULE_1__.Preferences.clear();
+        console.log('📦 Storage CLEAR: all items removed');
+      } catch (error) {
+        console.error('❌ Storage CLEAR failed:', error);
+      }
+    })();
+  }
+}
 
 /***/ }),
 
@@ -1457,23 +1491,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
 /* harmony import */ var aws_amplify_auth_enable_oauth_listener__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! aws-amplify/auth/enable-oauth-listener */ 92391);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 37580);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./environments/environment */ 45312);
-/* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! aws-amplify */ 56271);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/platform-browser */ 53563);
+/* harmony import */ var aws_amplify__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! aws-amplify */ 56271);
+/* harmony import */ var _aws_amplify_auth_cognito__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @aws-amplify/auth/cognito */ 32651);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/platform-browser */ 53563);
 /* harmony import */ var _app_app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/app.component */ 20092);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common/http */ 93262);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 3920);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic/angular */ 21507);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/router */ 90705);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/common/http */ 93262);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 3920);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic/angular */ 21507);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/router */ 90705);
 /* harmony import */ var _app_app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app/app-routing.module */ 94114);
 /* harmony import */ var _app_auth_interceptor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app/auth.interceptor */ 36747);
-/* harmony import */ var ngx_lottie__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ngx-lottie */ 37325);
-/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic/storage-angular */ 26817);
+/* harmony import */ var ngx_lottie__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ngx-lottie */ 37325);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic/storage-angular */ 26817);
 /* harmony import */ var swiper_element_bundle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! swiper/element/bundle */ 10493);
-/* harmony import */ var aws_amplify_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! aws-amplify/utils */ 27620);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ 50085);
+/* harmony import */ var aws_amplify_utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! aws-amplify/utils */ 27620);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/router */ 50085);
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @capacitor/core */ 14070);
+/* harmony import */ var _app_utils_capacitor_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app/utils/capacitor-storage */ 77980);
+
+
 
 
 
@@ -1498,23 +1536,29 @@ function playerFactory() {
   return __webpack_require__.e(/*! import() */ "node_modules_lottie-web_build_player_lottie_js").then(__webpack_require__.t.bind(__webpack_require__, /*! lottie-web */ 24335, 23));
 }
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.production) {
-  (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.enableProdMode)();
+  (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.enableProdMode)();
 }
-const mobileRedirect = 'capacitor://callback';
-const mobileSignOut = 'capacitor://callback';
-const capacitorRedirect = 'capacitor://localhost/callback';
-const capacitorCallback = 'capacitor://callback';
-const capacitorSignOut = 'capacitor://callback';
-const capacitorCallbackSignOut = 'capacitor://callback';
-const webRedirectDev = 'http://localhost:8100/callback';
-const webSignOutDev = 'http://localhost:8100';
-const webRedirectProd = 'https://cognito-capacitor-login.vercel.app/callback';
-const webSignOutProd = 'https://cognito-capacitor-login.vercel.app';
+const mobileRedirect = "capacitor://callback";
+const mobileSignOut = "capacitor://callback";
+const capacitorRedirect = "capacitor://localhost/callback";
+const capacitorCallback = "capacitor://callback";
+const capacitorSignOut = "capacitor://callback";
+const capacitorCallbackSignOut = "capacitor://callback";
+const webRedirectDev = "http://localhost:8100/callback";
+const webSignOutDev = "http://localhost:8100";
+const webRedirectProd = "https://cognito-capacitor-login.vercel.app/callback";
+const webSignOutProd = "https://cognito-capacitor-login.vercel.app";
 // Determine if we're in development or production web mode
-const isLocalDev = !_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.production && !(0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+const isLocalDev = !_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.production && !(0,_ionic_angular__WEBPACK_IMPORTED_MODULE_10__.isPlatform)("capacitor") && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
 const webRedirect = isLocalDev ? webRedirectDev : webRedirectProd;
 const webSignOut = isLocalDev ? webSignOutDev : webSignOutProd;
-aws_amplify__WEBPACK_IMPORTED_MODULE_10__.DefaultAmplify.configure({
+// Configure custom storage for Capacitor apps BEFORE Amplify.configure
+if ((0,_ionic_angular__WEBPACK_IMPORTED_MODULE_10__.isPlatform)("capacitor")) {
+  const capacitorStorage = new _app_utils_capacitor_storage__WEBPACK_IMPORTED_MODULE_8__.CapacitorStorage();
+  _aws_amplify_auth_cognito__WEBPACK_IMPORTED_MODULE_11__.cognitoUserPoolsTokenProvider.setKeyValueStorage(capacitorStorage);
+  console.log("📦 Capacitor storage configured for Amplify Auth");
+}
+aws_amplify__WEBPACK_IMPORTED_MODULE_12__.DefaultAmplify.configure({
   Auth: {
     Cognito: {
       userPoolId: _environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.awsConfig.userPoolId,
@@ -1523,30 +1567,31 @@ aws_amplify__WEBPACK_IMPORTED_MODULE_10__.DefaultAmplify.configure({
       loginWith: {
         oauth: {
           domain: _environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.awsConfig.cognitoDomain,
-          redirectSignIn: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorRedirect, capacitorCallback, mobileRedirect] : [webRedirect],
-          redirectSignOut: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorSignOut, capacitorCallbackSignOut, mobileSignOut] : [webSignOut],
-          responseType: 'code',
-          scopes: ['email', 'openid', 'profile']
+          redirectSignIn: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_10__.isPlatform)("capacitor") ? [capacitorRedirect, capacitorCallback, mobileRedirect] : [webRedirect],
+          redirectSignOut: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_10__.isPlatform)("capacitor") ? [capacitorSignOut, capacitorCallbackSignOut, mobileSignOut] : [webSignOut],
+          responseType: "code",
+          scopes: ["email", "openid", "profile"]
         }
       }
     }
   }
 });
 // Debug configuration
-console.log('🔧 AWS Amplify Configuration:', {
+console.log("🔧 AWS Amplify Configuration:", {
   userPoolId: _environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.awsConfig.userPoolId,
   userPoolClientId: _environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.awsConfig.userPoolClientId,
   identityPoolId: _environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.awsConfig.identityPoolId,
   cognitoDomain: _environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.awsConfig.cognitoDomain,
-  platform: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? 'capacitor' : 'web',
+  platform: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_10__.isPlatform)("capacitor") ? "capacitor" : "web",
   isLocalDev: isLocalDev,
   hostname: window.location.hostname,
-  redirectSignIn: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorRedirect, capacitorCallback, mobileRedirect] : [webRedirect],
-  redirectSignOut: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [capacitorSignOut, capacitorCallbackSignOut, mobileSignOut] : [webSignOut]
+  usingCapacitorStorage: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_10__.isPlatform)("capacitor"),
+  redirectSignIn: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_10__.isPlatform)("capacitor") ? [capacitorRedirect, capacitorCallback, mobileRedirect] : [webRedirect],
+  redirectSignOut: (0,_ionic_angular__WEBPACK_IMPORTED_MODULE_10__.isPlatform)("capacitor") ? [capacitorSignOut, capacitorCallbackSignOut, mobileSignOut] : [webSignOut]
 });
-const currentConfig = aws_amplify__WEBPACK_IMPORTED_MODULE_10__.DefaultAmplify.getConfig();
-console.log('🔧 Final Amplify Config:', currentConfig);
-console.log('🔧 OAuth Configuration Details:', {
+const currentConfig = aws_amplify__WEBPACK_IMPORTED_MODULE_12__.DefaultAmplify.getConfig();
+console.log("🔧 Final Amplify Config:", currentConfig);
+console.log("🔧 OAuth Configuration Details:", {
   oauthConfig: currentConfig.Auth?.Cognito?.loginWith?.oauth,
   redirectArrays: {
     signIn: currentConfig.Auth?.Cognito?.loginWith?.oauth?.redirectSignIn,
@@ -1555,38 +1600,44 @@ console.log('🔧 OAuth Configuration Details:', {
   scopes: currentConfig.Auth?.Cognito?.loginWith?.oauth?.scopes,
   responseType: currentConfig.Auth?.Cognito?.loginWith?.oauth?.responseType
 });
-aws_amplify_utils__WEBPACK_IMPORTED_MODULE_11__.Hub.listen('auth', /*#__PURE__*/function () {
+aws_amplify_utils__WEBPACK_IMPORTED_MODULE_13__.Hub.listen("auth", /*#__PURE__*/function () {
   var _ref = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* ({
     payload
   }) {
-    console.log('🎯 Auth Hub Event:', {
+    console.log("🎯 Auth Hub Event:", {
       event: payload.event,
       data: payload.data,
       fullPayload: payload
     });
     switch (payload.event) {
-      case 'signInWithRedirect':
-        console.log('🎯 signInWithRedirect SUCCESS');
-        const router = window.ng?.getInjector()?.get(_angular_router__WEBPACK_IMPORTED_MODULE_12__.Router);
-        yield router?.navigate(['/home']);
+      case "signInWithRedirect":
+        console.log("🎯 signInWithRedirect SUCCESS - navigating to home");
+        // Give Angular time to bootstrap if needed
+        setTimeout(/*#__PURE__*/(0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+          const router = window.ng?.getInjector()?.get(_angular_router__WEBPACK_IMPORTED_MODULE_14__.Router);
+          if (router) {
+            console.log("🎯 Router found, navigating to /home");
+            yield router.navigate(["/home"]);
+          } else {
+            console.error("🎯 Router not found, attempting manual navigation");
+            window.location.href = window.location.origin + "/home";
+          }
+        }), 500);
         break;
-      case 'signInWithRedirect_failure':
-        console.error('🎯 signInWithRedirect FAILED:', {
+      case "signInWithRedirect_failure":
+        console.error("🎯 signInWithRedirect FAILED:", {
           error: payload.data,
           errorType: typeof payload.data,
-          errorKeys: payload.data ? Object.keys(payload.data) : 'no keys',
+          errorKeys: payload.data ? Object.keys(payload.data) : "no keys",
           fullError: JSON.stringify(payload.data, null, 2)
         });
         break;
-      case 'customOAuthState':
-        console.log('🎯 customOAuthState received:', payload.data);
+      case "customOAuthState":
+        console.log("🎯 customOAuthState received:", payload.data);
         const state = payload.data; // this will be customState provided on signInWithRedirect function
         break;
-      case 'signInWithRedirect_failure':
-        console.error('🎯 OAuth redirect failure event');
-        break;
       default:
-        console.log('🎯 Unhandled auth event:', payload.event);
+        console.log("🎯 Unhandled auth event:", payload.event);
         break;
     }
   });
@@ -1596,40 +1647,65 @@ aws_amplify_utils__WEBPACK_IMPORTED_MODULE_11__.Hub.listen('auth', /*#__PURE__*/
 }());
 // Set up deep link handling for mobile apps
 if (_capacitor_core__WEBPACK_IMPORTED_MODULE_7__.Capacitor.isNativePlatform()) {
-  Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! @capacitor/app */ 59326)).then(({
+  __webpack_require__.e(/*! import() */ "node_modules_capacitor_app_dist_esm_index_js").then(__webpack_require__.bind(__webpack_require__, /*! @capacitor/app */ 59326)).then(({
     App
   }) => {
-    App.addListener('appUrlOpen', data => {
-      console.log('🔗 Deep link received:', data.url);
-      // Check if this is an OAuth callback (custom scheme or Universal Link)
-      if (data.url.includes('tensilapp://callback') || data.url.includes('capacitor://localhost/callback') || data.url.includes('capacitor://callback') || data.url.includes('https://cognito-capacitor-login.vercel.app/callback')) {
-        console.log('🔗 OAuth callback detected, processing...');
-        // Extract query parameters from the URL
-        try {
-          const url = new URL(data.url);
-          const code = url.searchParams.get('code');
-          const error = url.searchParams.get('error');
-          if (error) {
-            console.error('OAuth error:', error);
-          } else if (code) {
-            console.log('OAuth code received:', code);
-            // Let Amplify handle the token exchange
-            window.location.href = data.url;
+    App.addListener("appUrlOpen", /*#__PURE__*/function () {
+      var _ref3 = (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (data) {
+        console.log("🔗 Deep link received:", data.url);
+        // Check if this is an OAuth callback (custom scheme or Universal Link)
+        if (data.url.includes("tensilapp://callback") || data.url.includes("capacitor://localhost/callback") || data.url.includes("capacitor://callback") || data.url.includes("https://cognito-capacitor-login.vercel.app/callback")) {
+          console.log("🔗 OAuth callback detected, processing...");
+          // Extract query parameters from the URL
+          try {
+            const url = new URL(data.url);
+            const code = url.searchParams.get("code");
+            const state = url.searchParams.get("state");
+            const error = url.searchParams.get("error");
+            console.log("🔗 OAuth callback details:", {
+              code: code ? "present" : "missing",
+              state: state ? "present" : "missing",
+              error: error || "none"
+            });
+            if (error) {
+              console.error("🔗 OAuth error:", error);
+              const router = window.ng?.getInjector()?.get(_angular_router__WEBPACK_IMPORTED_MODULE_14__.Router);
+              router?.navigate(["/account/signup"], {
+                queryParams: {
+                  error
+                }
+              });
+              return;
+            }
+            if (code) {
+              console.log("🔗 OAuth code received, updating window.location for Amplify OAuth listener...");
+              console.log("🔗 Original deep link URL:", data.url);
+              // Convert deep link URL to web URL format that Amplify's OAuth listener expects
+              // Amplify's OAuth listener monitors window.location changes
+              const newUrl = `${window.location.origin}${window.location.pathname}?code=${encodeURIComponent(code)}${state ? `&state=${encodeURIComponent(state)}` : ''}`;
+              console.log("🔗 Setting window.location.href to:", newUrl);
+              // This will trigger a page reload with the OAuth code in the URL
+              // Amplify's OAuth listener (imported at top of file) will process it
+              window.location.href = newUrl;
+            }
+          } catch (err) {
+            console.error("🔗 Error processing deep link:", err);
           }
-        } catch (err) {
-          console.error('Error processing deep link:', err);
         }
-      }
-    });
+      });
+      return function (_x2) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
   });
 }
-(0,_angular_platform_browser__WEBPACK_IMPORTED_MODULE_13__.bootstrapApplication)(_app_app_component__WEBPACK_IMPORTED_MODULE_3__.AppComponent, {
-  providers: [(0,_angular_common_http__WEBPACK_IMPORTED_MODULE_14__.provideHttpClient)((0,_angular_common_http__WEBPACK_IMPORTED_MODULE_14__.withInterceptors)([_app_auth_interceptor__WEBPACK_IMPORTED_MODULE_5__.authInterceptor])), (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.importProvidersFrom)(_ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonicModule.forRoot(), _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_16__.IonicStorageModule.forRoot()), (0,ngx_lottie__WEBPACK_IMPORTED_MODULE_17__.provideLottieOptions)({
+(0,_angular_platform_browser__WEBPACK_IMPORTED_MODULE_15__.bootstrapApplication)(_app_app_component__WEBPACK_IMPORTED_MODULE_3__.AppComponent, {
+  providers: [(0,_angular_common_http__WEBPACK_IMPORTED_MODULE_16__.provideHttpClient)((0,_angular_common_http__WEBPACK_IMPORTED_MODULE_16__.withInterceptors)([_app_auth_interceptor__WEBPACK_IMPORTED_MODULE_5__.authInterceptor])), (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.importProvidersFrom)(_ionic_angular__WEBPACK_IMPORTED_MODULE_17__.IonicModule.forRoot(), _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_18__.IonicStorageModule.forRoot()), (0,ngx_lottie__WEBPACK_IMPORTED_MODULE_19__.provideLottieOptions)({
     player: playerFactory
   }),
   // Use hash routing only for mobile (Capacitor) to avoid file:// protocol issues
   // Use regular routing for web to support Universal Links and OAuth callbacks
-  (0,_angular_router__WEBPACK_IMPORTED_MODULE_18__.provideRouter)(_app_app_routing_module__WEBPACK_IMPORTED_MODULE_4__.routes, ...((0,_ionic_angular__WEBPACK_IMPORTED_MODULE_9__.isPlatform)('capacitor') ? [(0,_angular_router__WEBPACK_IMPORTED_MODULE_18__.withHashLocation)()] : []))]
+  (0,_angular_router__WEBPACK_IMPORTED_MODULE_20__.provideRouter)(_app_app_routing_module__WEBPACK_IMPORTED_MODULE_4__.routes, ...((0,_ionic_angular__WEBPACK_IMPORTED_MODULE_10__.isPlatform)("capacitor") ? [(0,_angular_router__WEBPACK_IMPORTED_MODULE_20__.withHashLocation)()] : []))]
 }).catch(err => console.error(err));
 
 /***/ }),

@@ -22,47 +22,56 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- Deep linking intent filter for tensilapp scheme -->
-            <intent-filter android:autoVerify="true">
+            <!-- tensilapp://callback -->
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tensilapp" />
+                <data android:scheme="tensilapp" android:host="callback" />
             </intent-filter>
 
-            <!-- Deep linking intent filter for cognitoapp scheme -->
-            <intent-filter android:autoVerify="true">
+            <!-- cognitoapp://callback -->
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="cognitoapp" />
+                <data android:scheme="cognitoapp" android:host="callback" />
             </intent-filter>
 
-            <!-- Deep linking intent filter for capacitor scheme -->
-            <intent-filter android:autoVerify="true">
+            <!-- capacitor://callback -->
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="capacitor" />
+                <data android:scheme="capacitor" android:host="callback" />
             </intent-filter>
 
-            <!-- Universal links intent filter for Cognito HTTPS callbacks -->
+            <!-- capacitor://localhost/callback -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="capacitor" android:host="localhost" android:path="/callback" />
+            </intent-filter>
+
+            <!-- HTTPS universal link from Cognito -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
-                      android:host="eu-north-1bzzl2ybts.auth.eu-north-1.amazoncognito.com" />
+                    android:host="eu-north-1bzzl2ybts.auth.eu-north-1.amazoncognito.com" />
             </intent-filter>
 
-            <!-- Universal links intent filter for Vercel app links -->
+            <!-- HTTPS universal link from Vercel -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
-                      android:host="cognito-capacitor-login.vercel.app" />
+                    android:host="cognito-capacitor-login.vercel.app" />
             </intent-filter>
+
 
         </activity>
 

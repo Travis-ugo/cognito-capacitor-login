@@ -146,20 +146,9 @@ export class AuthService {
   }
 
   private setupDeepLinkListener() {
-    console.log('Setting up deep link listener');
-
-    App.addListener('appUrlOpen', async (data) => {
-      console.log('Deep link received:', data.url);
-
-      if (data.url.includes('localhost:8100') || data.url.includes('tensilapp://callback') || data.url.includes('capacitor://localhost/callback') || data.url.includes('capacitor://callback')) {
-        try {
-          await Browser.close();
-          await this.processAuthCallback(data.url);
-        } catch (error) {
-          console.error('Error processing auth callback:', error);
-        }
-      }
-    });
+    // Deep link handling is now centralized in main.ts
+    // This method is no longer needed but kept for backwards compatibility
+    console.log('Deep link listener setup (now handled in main.ts)');
   }
 
   private setupBrowserListener() {
@@ -390,9 +379,29 @@ export class AuthService {
   // returns a boolean based on auth state
   public async isAuthenticated() {
     try {
-      await this.fetchAuthSession();
-      return true;
-    } catch {
+      console.log('🔐 Checking authentication status...');
+
+      // Try to get the current session
+      const session = await fetchAuthSession();
+
+      if (session.tokens?.idToken) {
+        console.log('✅ Valid session found with ID token');
+
+        // Double-check by getting current user
+        try {
+          const user = await getCurrentUser();
+          console.log('✅ Current user confirmed:', user.userId);
+          return true;
+        } catch (userErr) {
+          console.log('⚠️ Session exists but user not available:', userErr);
+          return false;
+        }
+      }
+
+      console.log('❌ No valid session tokens found');
+      return false;
+    } catch (err) {
+      console.log('❌ Authentication check failed:', err);
       return false;
     }
   }

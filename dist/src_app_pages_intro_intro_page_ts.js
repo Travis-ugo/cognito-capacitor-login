@@ -579,23 +579,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   IntroPage: () => (/* binding */ IntroPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 24398);
-/* harmony import */ var _intro_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./intro.page.html?ngResource */ 22727);
-/* harmony import */ var _intro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./intro.page.scss?ngResource */ 47939);
-/* harmony import */ var _intro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_intro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 37580);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser */ 80436);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ 75797);
-/* harmony import */ var swiper_element_bundle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper/element/bundle */ 10493);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../environments/environment */ 45312);
-/* harmony import */ var _services_intro_slides_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/intro-slides.service */ 78517);
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/auth.service */ 44796);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 50085);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/router */ 90705);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ 35135);
-/* harmony import */ var _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic/angular/standalone */ 17241);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/forms */ 34456);
-/* harmony import */ var _services_utility_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/utility.service */ 25190);
+/* harmony import */ var _Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 89204);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 24398);
+/* harmony import */ var _intro_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./intro.page.html?ngResource */ 22727);
+/* harmony import */ var _intro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./intro.page.scss?ngResource */ 47939);
+/* harmony import */ var _intro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_intro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 37580);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ 80436);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ 75797);
+/* harmony import */ var swiper_element_bundle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! swiper/element/bundle */ 10493);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../environments/environment */ 45312);
+/* harmony import */ var _services_intro_slides_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/intro-slides.service */ 78517);
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/auth.service */ 44796);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 50085);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/router */ 90705);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common */ 35135);
+/* harmony import */ var _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic/angular/standalone */ 17241);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/forms */ 34456);
+/* harmony import */ var _services_utility_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../services/utility.service */ 25190);
 
 
 
@@ -603,7 +604,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,swiper_element_bundle__WEBPACK_IMPORTED_MODULE_2__.register)();
+
+(0,swiper_element_bundle__WEBPACK_IMPORTED_MODULE_3__.register)();
 
 
 
@@ -621,8 +623,8 @@ let IntroPage = class IntroPage {
   swiperRef;
   swiper;
   introSlides = [];
-  cdn = _environments_environment__WEBPACK_IMPORTED_MODULE_3__.environment.imgCdn;
-  _reachedEnd = new rxjs__WEBPACK_IMPORTED_MODULE_7__.BehaviorSubject(false);
+  cdn = _environments_environment__WEBPACK_IMPORTED_MODULE_4__.environment.imgCdn;
+  _reachedEnd = new rxjs__WEBPACK_IMPORTED_MODULE_8__.BehaviorSubject(false);
   reachedEnd = this._reachedEnd.asObservable();
   isAgreed = false;
   showError = false;
@@ -638,78 +640,84 @@ let IntroPage = class IntroPage {
     this.checkIfLoggedIn();
   }
   checkIfLoggedIn() {
-    console.log('🔍 Intro page: Checking if user is logged in...');
-    this.auth.isAuthenticated().then(loggedIn => {
-      console.log('🔍 Intro page: Authentication result:', loggedIn);
-      if (loggedIn) {
-        console.log('✅ User is authenticated, redirecting to home...');
-        this.loggedIn = true;
-        void this.router.navigateByUrl('/home');
-      } else {
-        console.log('❌ User is NOT authenticated, showing intro content...');
-        this.loggedIn = false;
-        this.titleService.setTitle('Welcome to HappyMe');
-        this.introSlidesSrv.getSlides().subscribe(introSlides => {
-          console.log('📄 Intro slides received:', introSlides?.length || 0, 'slides');
-          console.log('📄 Raw slides data:', introSlides);
-          // Always set introSlides (even if empty) to prevent infinite loading
-          this.introSlides = introSlides || [];
-          if (this.introSlides && this.introSlides.length > 0) {
-            console.log('✅ Intro slides set, initializing swiper...');
-            // Wait for view to update then initialize swiper
-            setTimeout(() => {
-              this.swiper = this.swiperRef?.nativeElement.swiper;
-              if (this.swiper) {
-                this.swiper.on('slideChange', () => {
-                  this.slideChange();
-                });
-              }
-            }, 100);
-          } else {
-            console.log('⚠️ No intro slides available, showing fallback content...');
-            // Don't redirect, just show the fallback content with login buttons
-          }
-        }, error => {
-          console.error('❌ Error loading intro slides:', error);
-          // Set empty array to show fallback content
-          this.introSlides = [];
-        });
+    var _this = this;
+    return (0,_Users_t_r_a_v_s_Software_cognito_capacitor_login_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      console.log('🔍 Intro page: Checking if user is logged in...');
+      console.log('🔍 Current URL:', window.location.href);
+      console.log('🔍 Current route:', _this.router.url);
+      try {
+        const loggedIn = yield _this.auth.isAuthenticated();
+        console.log('🔍 Intro page: Authentication result:', loggedIn);
+        if (loggedIn) {
+          console.log('✅ User is authenticated, redirecting to home...');
+          _this.loggedIn = true;
+          yield _this.router.navigateByUrl('/home');
+        } else {
+          console.log('❌ User is NOT authenticated, showing intro content...');
+          _this.loggedIn = false;
+          _this.titleService.setTitle('Welcome to HappyMe');
+          _this.introSlidesSrv.getSlides().subscribe(introSlides => {
+            console.log('📄 Intro slides received:', introSlides?.length || 0, 'slides');
+            console.log('📄 Raw slides data:', introSlides);
+            // Always set introSlides (even if empty) to prevent infinite loading
+            _this.introSlides = introSlides || [];
+            if (_this.introSlides && _this.introSlides.length > 0) {
+              console.log('✅ Intro slides set, initializing swiper...');
+              // Wait for view to update then initialize swiper
+              setTimeout(() => {
+                _this.swiper = _this.swiperRef?.nativeElement.swiper;
+                if (_this.swiper) {
+                  _this.swiper.on('slideChange', () => {
+                    _this.slideChange();
+                  });
+                }
+              }, 100);
+            } else {
+              console.log('⚠️ No intro slides available, showing fallback content...');
+              // Don't redirect, just show the fallback content with login buttons
+            }
+          }, error => {
+            console.error('❌ Error loading intro slides:', error);
+            // Set empty array to show fallback content
+            _this.introSlides = [];
+          });
+        }
+      } catch (error) {
+        console.error('❌ Error checking authentication:', error);
+        console.log('🔄 Assuming not authenticated due to error...');
+        _this.loggedIn = false;
       }
-    }).catch(error => {
-      console.error('❌ Error checking authentication:', error);
-      console.log('🔄 Assuming not authenticated due to error...');
-      this.loggedIn = false;
-    });
+    })();
   }
   slideChange() {
     this._reachedEnd.next(this.swiper.isEnd);
   }
   static ctorParameters = () => [{
-    type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.Title
+    type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__.Title
   }, {
-    type: _services_intro_slides_service__WEBPACK_IMPORTED_MODULE_4__.IntroSlidesService
+    type: _services_intro_slides_service__WEBPACK_IMPORTED_MODULE_5__.IntroSlidesService
   }, {
-    type: _services_auth_service__WEBPACK_IMPORTED_MODULE_5__.AuthService
+    type: _services_auth_service__WEBPACK_IMPORTED_MODULE_6__.AuthService
   }, {
-    type: _angular_router__WEBPACK_IMPORTED_MODULE_9__.Router
+    type: _angular_router__WEBPACK_IMPORTED_MODULE_10__.Router
   }, {
-    type: _services_utility_service__WEBPACK_IMPORTED_MODULE_6__.UtilityService
+    type: _services_utility_service__WEBPACK_IMPORTED_MODULE_7__.UtilityService
   }];
   static propDecorators = {
     swiperRef: [{
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.ViewChild,
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_11__.ViewChild,
       args: ['swiper']
     }]
   };
 };
-IntroPage = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
+IntroPage = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
   selector: 'app-intro',
-  template: _intro_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+  template: _intro_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   standalone: true,
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_12__.NgIf, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_13__.IonContent, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_13__.IonButton, _angular_common__WEBPACK_IMPORTED_MODULE_12__.NgForOf, _angular_router__WEBPACK_IMPORTED_MODULE_14__.RouterLink, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_13__.IonImg, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_13__.IonGrid, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_13__.IonRow, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_13__.IonCol, _angular_forms__WEBPACK_IMPORTED_MODULE_15__.ReactiveFormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_15__.FormsModule],
-  encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_10__.ViewEncapsulation.None,
-  styles: [(_intro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
-}), (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__metadata)("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.Title, _services_intro_slides_service__WEBPACK_IMPORTED_MODULE_4__.IntroSlidesService, _services_auth_service__WEBPACK_IMPORTED_MODULE_5__.AuthService, _angular_router__WEBPACK_IMPORTED_MODULE_9__.Router, _services_utility_service__WEBPACK_IMPORTED_MODULE_6__.UtilityService])], IntroPage);
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_13__.NgIf, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_14__.IonContent, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_14__.IonButton, _angular_common__WEBPACK_IMPORTED_MODULE_13__.NgForOf, _angular_router__WEBPACK_IMPORTED_MODULE_15__.RouterLink, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_14__.IonImg, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_14__.IonGrid, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_14__.IonRow, _ionic_angular_standalone__WEBPACK_IMPORTED_MODULE_14__.IonCol, _angular_forms__WEBPACK_IMPORTED_MODULE_16__.ReactiveFormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_16__.FormsModule],
+  encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_11__.ViewEncapsulation.None,
+  styles: [(_intro_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
+}), (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__metadata)("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__.Title, _services_intro_slides_service__WEBPACK_IMPORTED_MODULE_5__.IntroSlidesService, _services_auth_service__WEBPACK_IMPORTED_MODULE_6__.AuthService, _angular_router__WEBPACK_IMPORTED_MODULE_10__.Router, _services_utility_service__WEBPACK_IMPORTED_MODULE_7__.UtilityService])], IntroPage);
 
 
 /***/ })

@@ -35,6 +35,7 @@
 		"@capacitor/device": "^7.0.1",
 		"@capacitor/haptics": "^7.0.1",
 		"@capacitor/ios": "7.2.0",
+		"@capacitor/preferences": "^7.0.2",
 		"@capacitor/push-notifications": "^7.0.3",
 		"@capacitor/share": "^7.0.1",
 		"@capacitor/status-bar": "^7.0.2",
